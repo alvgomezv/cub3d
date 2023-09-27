@@ -12,25 +12,11 @@
 
 typedef struct s_color
 {
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-	uint8_t	a;
+	int	r;
+	int	g;
+	int	b;
+	int	a;
 }		t_color;
-
-typedef struct s_map
-{
-	s_player	*player;
-	int			**cells;
-	int			max_x;
-	int			max_y;
-	char		*no_texture;
-	char		*so_texture;
-	char		*we_texture;
-	char		*ea_texture;
-	s_color		*ceiling;
-	s_color		*floor;
-}		t_map;
 
 typedef struct s_player
 {
@@ -40,6 +26,20 @@ typedef struct s_player
 	float	y;
 	float	angle;
 }		t_player;
+
+typedef struct s_map
+{
+	t_player	*player;
+	int			**cells;
+	int			max_x;
+	int			max_y;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	t_color		*ceiling;
+	t_color		*floor;
+}		t_map;
 
 enum e_map_cell
 {
