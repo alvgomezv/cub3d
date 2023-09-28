@@ -11,7 +11,8 @@ LIBS=-ldl -lglfw -L$(GLFW_PATH) -pthread -lm $(LIBMLX)/libmlx42.a
 
 SRC_DIR = sources
 MAIN = $(SRC_DIR)/main.c
-SRC = 	$(SRC_DIR)/hooks.c $(SRC_DIR)/colors_utils.c
+SRC = 	$(SRC_DIR)/hooks.c $(SRC_DIR)/colors_utils.c $(SRC_DIR)/draw_utils.c \
+		$(SRC_DIR)/init_structs.c
 
 TEST_DIR = testing
 TEST_MAIN = $(TEST_DIR)/test.c
