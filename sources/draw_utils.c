@@ -1,21 +1,21 @@
 # include "../cub3d.h"
 
-void	draw_pixel(mlx_image_t *canvas, t_pxl *pxl)
+void	draw_pixel(mlx_image_t *img, t_pxl *pxl)
 {
 	int	pxl_idx;
 
-	if (0 <= pxl->x && pxl->x < (int)canvas->width
-		&& 0 <= pxl->y && pxl->y < (int)canvas->height)
+	if (0 <= pxl->x && pxl->x < (int)img->width
+		&& 0 <= pxl->y && pxl->y < (int)img->height)
 	{
-		pxl_idx = (pxl->y * canvas->width + pxl->x) * 4;
-		canvas->pixels[pxl_idx] = pxl->color->r;
-		canvas->pixels[pxl_idx + 1] = pxl->color->g;
-		canvas->pixels[pxl_idx + 2] = pxl->color->b;
-		canvas->pixels[pxl_idx + 3] = pxl->color->a;
+		pxl_idx = (pxl->y * img->width + pxl->x) * 4;
+		img->pixels[pxl_idx] = pxl->color->r;
+		img->pixels[pxl_idx + 1] = pxl->color->g;
+		img->pixels[pxl_idx + 2] = pxl->color->b;
+		img->pixels[pxl_idx + 3] = pxl->color->a;
 	}
 }
 
-void	draw_line(mlx_image_t *canvas, t_pxl *pxl1, t_pxl *pxl2, t_color *color)
+void	draw_line(mlx_image_t *img, t_pxl *pxl1, t_pxl *pxl2, t_color *c)
 {
 	t_pxl		pxl;
 	double		mx;
@@ -32,13 +32,13 @@ void	draw_line(mlx_image_t *canvas, t_pxl *pxl1, t_pxl *pxl2, t_color *color)
 	{
 		pxl.x = (int)(mx * i) + pxl1->x;
 		pxl.y = (int)(my * i) + pxl1->y;
-		pxl.color = color;
-		draw_pixel(canvas, &pxl);
+		pxl.color = c;
+		draw_pixel(img, &pxl);
 		i++;
 	}
 }
 
-void	draw_square(mlx_image_t *canvas, t_pxl *tl_corner, int size, t_color *c)
+void	draw_square(mlx_image_t *img, t_pxl *tl_corner, int size, t_color *c)
 {
 	t_pxl	pxl;
 	int		irow;
@@ -53,7 +53,7 @@ void	draw_square(mlx_image_t *canvas, t_pxl *tl_corner, int size, t_color *c)
 		{
 			pxl.x = tl_corner->x + icol;
 			pxl.y = tl_corner->y + irow;
-			draw_pixel(canvas, &pxl);
+			draw_pixel(img, &pxl);
 		}
 		icol = -1;
 	}

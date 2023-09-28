@@ -15,10 +15,10 @@
 # define WIN_WIDTH 1000
 # define WIN_HEIGTH 1000
 
+# define MM_EMPTY_COLOR 0x000000FF
 # define MM_WALL_COLOR 0xFFFFFFFF
-# define MM_FLOOR_COLOR 0x00000000
-# define MM_CELL_SIZE 20
-# define MM_CELL_SEP 2
+# define MM_C_SIZE 50
+# define MM_C_SEP 2
 
 typedef struct s_color
 {
@@ -58,23 +58,25 @@ typedef struct s_map
 	t_color		*floor;
 	mlx_t		*mlx;
 	mlx_image_t	*canvas;
+	mlx_image_t	*minmap;
 }		t_map;
 
 
 
 enum e_map_cell
 {
-	floor,
+	empty,
 	wall,
 	outside,
 };
 
 // DRAW MINIMAP
+void	draw_minmap(t_map *map, t_pxl *tl_corner);
 
 // DRAW UTILS
-void	draw_pixel(mlx_image_t *canvas, t_pxl *pxl);
-void	draw_line(mlx_image_t *canvas, t_pxl *pxl1, t_pxl *pxl2, t_color *color);
-void	draw_square(mlx_image_t *canvas, t_pxl *tl_corner, int size, t_color *c);
+void	draw_pixel(mlx_image_t *img, t_pxl *pxl);
+void	draw_line(mlx_image_t *img, t_pxl *pxl1, t_pxl *pxl2, t_color *c);
+void	draw_square(mlx_image_t *img, t_pxl *tl_corner, int size, t_color *c);
 
 // STRUCT UTILS
 t_color	*init_color(int r, int g, int b, int a);
