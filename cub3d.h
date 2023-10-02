@@ -39,6 +39,8 @@ typedef struct s_map
 	char		*ea_texture;
 	t_color		*ceiling;
 	t_color		*floor;
+	int			check;
+	int			top_x;
 }		t_map;
 
 enum e_map_cell
@@ -46,6 +48,7 @@ enum e_map_cell
 	empty,
 	wall,
 	outside,
+	position,
 };
 
 #endif
