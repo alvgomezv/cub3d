@@ -11,6 +11,7 @@
 # include <unistd.h>
 
 # define PI 3.14159265359
+#define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
 
 # define WIN_WIDTH 1000
 # define WIN_HEIGTH 1000
@@ -19,12 +20,12 @@
 # define MM_WALL_COLOR 0xFFFFFFFF
 # define MM_TL_X 0
 # define MM_TL_Y 0
+# define MM_C_SIZE 40
+# define MM_C_SEP 0
 # define P_COLOR 0x00FF00FF
-# define MM_C_SIZE 50
-# define MM_C_SEP 2
-# define P_SIZE 5
+# define P_SQ 5
 # define P_LINE 10
-# define P_MOV 5
+# define P_MOV 4
 # define P_ROT 0.1
 
 typedef struct s_color
@@ -99,5 +100,6 @@ t_color	*int_to_color(int rgba);
 // HOOKS
 void	cont_hook(void *param);
 void	disc_hook(mlx_key_data_t key, void *param);
+void	move_if_no_collision(t_map *map, int pxls_to_move, int move_x_axis);
 
 #endif

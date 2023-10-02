@@ -52,14 +52,14 @@ void	draw_player(t_map *m)
 	t_pxl	line_pxl1;
 	t_pxl	line_pxl2;
 
-	tl_player_sq.x = m->player->x - P_SIZE / 2;
-	tl_player_sq.y = m->player->y - P_SIZE / 2;
+	tl_player_sq.x = m->player->x - P_SQ / 2;
+	tl_player_sq.y = m->player->y - P_SQ / 2;
 	tl_player_sq.color = int_to_color(P_COLOR);
-	draw_square(m->minmap, &tl_player_sq, P_SIZE, tl_player_sq.color);
+	draw_square(m->minmap, &tl_player_sq, P_SQ, tl_player_sq.color);
 	line_pxl1.x = m->player->x;
 	line_pxl1.y = m->player->y;
 	line_pxl2.x = m->player->x + P_LINE * cos(m->player->angle);
-    line_pxl2.y = m->player->y + P_LINE * sin(m->player->angle);
+	line_pxl2.y = m->player->y + P_LINE * sin(m->player->angle);
 	draw_line(m->minmap, &line_pxl1, &line_pxl2, tl_player_sq.color);
 	free(tl_player_sq.color);
 }

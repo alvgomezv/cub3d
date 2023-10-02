@@ -1,23 +1,25 @@
 
 #include "../cub3d.h"
 
+
+
 void	apply_movement(t_map *map)
 {
 	if (mlx_is_key_down(map->mlx, MLX_KEY_A))
 	{
-		map->player->x -= P_MOV;
+		move_if_no_collision(map, -P_MOV, 1);
 	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
 	{
-		map->player->x += P_MOV;
+		move_if_no_collision(map, P_MOV, 1);
 	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_W))
 	{
-		map->player->y -= P_MOV;
+		move_if_no_collision(map, -P_MOV, 0);
 	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_S))
 	{
-		map->player->y += P_MOV;
+		move_if_no_collision(map, P_MOV, 0);
 	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
 	{
