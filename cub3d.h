@@ -75,7 +75,11 @@ enum e_map_cell
 	empty,
 	wall,
 	outside,
+	checked,
 };
+
+// CHECK MAP
+int		is_map_closed(t_map *map);
 
 // DRAW MINIMAP
 void	draw_minmap(t_map *map, t_pxl *tl_corner);
