@@ -13,6 +13,15 @@ void	choose_square_to_draw(t_map *map, t_pxl *tl_corner, int x, int y)
 	}
 }
 
+void	clean_minmap_background(t_map *map)
+{
+	unsigned int	i;
+
+	i = -1;
+	while (++i < map->minmap->height * map->minmap->width * 4)
+		map->minmap->pixels[i] = 0;
+}
+
 void	draw_minmap(t_map *map, t_pxl *tl_corner)
 {
 	int		orig_x;
@@ -22,6 +31,7 @@ void	draw_minmap(t_map *map, t_pxl *tl_corner)
 	x = -1;
 	y = -1;
 	orig_x = tl_corner->x;
+	clean_minmap_background(map);
 	while (++y < map->max_rows)
 	{
 		while (++x < map->max_cols)

@@ -21,11 +21,11 @@ void	apply_movement(t_map *map)
 	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
 	{
-		map->player->angle += P_ROT;
+		map->player->angle -= P_ROT;
 	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
 	{
-		map->player->angle -= P_ROT;
+		map->player->angle += P_ROT;
 	}
 }
 
