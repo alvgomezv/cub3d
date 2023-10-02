@@ -17,8 +17,11 @@
 
 # define MM_EMPTY_COLOR 0x000000FF
 # define MM_WALL_COLOR 0xFFFFFFFF
+# define P_COLOR 0x00FF00FF
 # define MM_C_SIZE 50
 # define MM_C_SEP 2
+# define P_SIZE 5
+# define P_LINE 10
 
 typedef struct s_color
 {
@@ -37,10 +40,10 @@ typedef struct s_pxl
 
 typedef struct s_player
 {
-	int		start_x;
-	int		start_y;
-	float	x;
-	float	y;
+	int		start_col;
+	int		start_row;
+	int		x;
+	int		y;
 	float	angle;
 }		t_player;
 
@@ -48,8 +51,8 @@ typedef struct s_map
 {
 	t_player	*player;
 	int			**cells;
-	int			max_x;
-	int			max_y;
+	int			max_cols;
+	int			max_rows;
 	char		*no_texture;
 	char		*so_texture;
 	char		*we_texture;
@@ -72,6 +75,7 @@ enum e_map_cell
 
 // DRAW MINIMAP
 void	draw_minmap(t_map *map, t_pxl *tl_corner);
+void	draw_player(t_map *m);
 
 // DRAW UTILS
 void	draw_pixel(mlx_image_t *img, t_pxl *pxl);
