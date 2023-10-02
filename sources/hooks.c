@@ -3,35 +3,42 @@
 
 void	apply_movement(t_map *map)
 {
-	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
+	if (mlx_is_key_down(map->mlx, MLX_KEY_A))
 	{
-		// fdf->img->instances[0].y += 5;
-		// fdf->mov_y += 5;
+		map->player->x -= P_MOV;
 	}
-	if (mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
+	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
 	{
-		// fdf->img->instances[0].y -= 5;
-		// fdf->mov_y -= 5;
+		map->player->x += P_MOV;
+	}
+	if (mlx_is_key_down(map->mlx, MLX_KEY_W))
+	{
+		map->player->y -= P_MOV;
+	}
+	if (mlx_is_key_down(map->mlx, MLX_KEY_S))
+	{
+		map->player->y += P_MOV;
 	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
 	{
-		// fdf->img->instances[0].x += 5;
-		// fdf->mov_x += 5;
+		map->player->angle += P_ROT;
 	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
 	{
-		// fdf->img->instances[0].x -= 5;
-		// fdf->mov_x -= 5;
+		map->player->angle -= P_ROT;
 	}
 }
 
 void	cont_hook(void *param)
 {
-	t_map		*map;
+	t_map	*map;
+	t_pxl	mm_tl_corner;
 
 	map = (t_map *) param;
-	// draw_map(fdf);
-	// apply_movement(fdf);
+	mm_tl_corner.x = MM_TL_X;
+	mm_tl_corner.y = MM_TL_Y;
+	apply_movement(map);
+	draw_minmap(map, &mm_tl_corner);
 }
 
 void	disc_hook(mlx_key_data_t key, void *param)

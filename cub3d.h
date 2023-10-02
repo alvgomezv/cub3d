@@ -17,11 +17,15 @@
 
 # define MM_EMPTY_COLOR 0x000000FF
 # define MM_WALL_COLOR 0xFFFFFFFF
+# define MM_TL_X 0
+# define MM_TL_Y 0
 # define P_COLOR 0x00FF00FF
 # define MM_C_SIZE 50
 # define MM_C_SEP 2
 # define P_SIZE 5
 # define P_LINE 10
+# define P_MOV 5
+# define P_ROT 0.1
 
 typedef struct s_color
 {
