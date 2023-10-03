@@ -48,7 +48,7 @@ char	*change_tabs_for_4_spaces(char *line)
 
 static void	fill_cells_in_map_aux(int *cells, int i, t_map *map)
 {
-	while (i < map->max_x)
+	while (i < map->max_rows)
 	{
 		cells[i] = 2;
 		i++;
@@ -78,7 +78,7 @@ static void	fill_cells_in_map(char *line, int *cells, t_map *map, int y)
 		}
 		i++;
 	}
-	if (i < map->max_x)
+	if (i < map->max_rows)
 		fill_cells_in_map_aux(cells, i, map);
 }
 
@@ -88,13 +88,13 @@ void	fill_cells(char *line, t_map *map, int fd)
 	char	*new_line;
 
 	i = 0;
-	map->cells = (int **)ft_calloc(map->max_y, sizeof(int *));
+	map->cells = (int **)ft_calloc(map->max_cols, sizeof(int *));
 	while (line)
 	{
 		new_line = change_tabs_for_4_spaces(line);
 		if (new_line)
 			free(line);
-		map->cells[i] = (int *)ft_calloc(map->max_x, sizeof(int));
+		map->cells[i] = (int *)ft_calloc(map->max_rows, sizeof(int));
 		fill_cells_in_map(new_line, map->cells[i], map, i);
 		free(new_line);
 		new_line = get_next_line(fd);

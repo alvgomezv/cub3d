@@ -68,29 +68,6 @@ typedef struct s_map
 	mlx_t		*mlx;
 	mlx_image_t	*canvas;
 	mlx_image_t	*minmap;
-}		t_map;
-
-typedef struct s_player
-{
-	int		start_x;
-	int		start_y;
-	float	x;
-	float	y;
-	float	angle;
-}		t_player;
-
-typedef struct s_map
-{
-	t_player	*player;
-	int			**cells;
-	int			max_x;
-	int			max_y;
-	char		*no_texture;
-	char		*so_texture;
-	char		*we_texture;
-	char		*ea_texture;
-	t_color		*ceiling;
-	t_color		*floor;
 	int			check;
 	int			empty_line;
 	int			top_x;

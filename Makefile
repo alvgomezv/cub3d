@@ -13,8 +13,8 @@ SRC_DIR = sources
 MAIN = $(SRC_DIR)/main.c
 SRC = 	$(SRC_DIR)/hooks.c $(SRC_DIR)/colors_utils.c $(SRC_DIR)/draw_utils.c \
 		$(SRC_DIR)/init_structs.c $(SRC_DIR)/draw_minmap.c $(SRC_DIR)/map_check.c \
-		$(SRC_DIR)/collisions.c
-SRC = 	$(SRC_DIR)/check_for_errors.c $(SRC_DIR)/clean_cells.c \
+		$(SRC_DIR)/collisions.c \
+		$(SRC_DIR)/check_for_errors.c $(SRC_DIR)/clean_cells.c \
 		$(SRC_DIR)/fill_cells_from_cub.c $(SRC_DIR)/fill_textures_and_colors.c  \
 		$(SRC_DIR)/inicialize_and_free_map.c $(SRC_DIR)/parse_and_fill_cub.c
 

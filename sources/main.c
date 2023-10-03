@@ -6,10 +6,10 @@ void	print_map_cells(t_map *map)
 	int	j;
 
 	i = 0;
-	while (i < map->max_y)
+	while (i < map->max_cols)
 	{
 		j = 0;
-		while (j < map->max_x)
+		while (j < map->max_rows)
 		{
 			printf("%d", map->cells[i][j]);
 			j++;
@@ -17,8 +17,8 @@ void	print_map_cells(t_map *map)
 		printf("\n");
 		i++;
 	}
-	printf("Player: %d, %d, %f\n", map->player->start_x,
-		map->player->start_y, map->player->angle);
+	printf("Player: %d, %d, %f\n", map->player->start_row,
+		map->player->start_col, map->player->angle);
 }
 
 int	main(int argc, char **argv)
