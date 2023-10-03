@@ -21,7 +21,7 @@ void	ft_free_cells(t_map *map)
 	int	i;
 
 	i = 0;
-	while (i < map->max_cols)
+	while (i < map->max_rows)
 	{
 		if (map->cells[i])
 			free(map->cells[i]);
@@ -85,6 +85,10 @@ void	initialize_player(t_map *map, char direction, int i, int y)
 		map->player->angle = PI;
 	else if (direction == 'E')
 		map->player->angle = 0;
-	map->player->start_row = i;
-	map->player->start_col = y;
+	map->player->start_col = i;
+	map->player->start_row = y;
+	map->player->x = (map->player->start_col - 1)
+		* (MM_C_SIZE + MM_C_SEP) + ((MM_C_SIZE + MM_C_SEP) / 2);
+	map->player->y = (map->player->start_row - 1)
+		* (MM_C_SIZE + MM_C_SEP) + ((MM_C_SIZE + MM_C_SEP) / 2);
 }

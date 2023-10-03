@@ -9,7 +9,7 @@ void	choose_square_to_draw(t_map *map, t_pxl *tl_corner, int x, int y)
 	if (map->cells[y][x] != outside)
 	{
 		draw_square(map->minmap, tl_corner, MM_C_SIZE, tl_corner->color);
-		free(tl_corner->color);
+		// free(tl_corner->color);
 	}
 }
 

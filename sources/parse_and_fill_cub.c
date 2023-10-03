@@ -36,15 +36,17 @@ static void	aux_count_lines_and_columns_of_the_map(char *line,
 	{
 		new_line = change_tabs_for_4_spaces(line);
 		check_cells_for_errors(new_line, map);
-		map->max_cols++;
-		if (map->max_rows < ft_strlen(new_line))
-			map->max_rows = ft_strlen(new_line);
+		map->max_rows++;
+		if (map->max_cols < ft_strlen(new_line))
+			map->max_cols = ft_strlen(new_line);
 		if (new_line)
 			free(line);
 		free(new_line);
 		new_line = get_next_line(fd);
 		line = new_line;
 	}
+	if (map->check == 0)
+		ft_error_and_free_map(map, "Error, invalid map data", line);
 }
 
 static void	count_lines_and_columns_of_the_map(t_map *map, int fd)
@@ -83,8 +85,6 @@ void	cub_parsing(char *map_route, t_map *map)
 	count_lines_and_columns_of_the_map(map, fd);
 	close(fd);
 	fd = open(map_route, O_RDONLY);
-	printf("Max X: %d\n", map->max_rows);
-	printf("Max Y: %d\n", map->max_cols);
 	line = get_next_line(fd);
 	while (line)
 	{

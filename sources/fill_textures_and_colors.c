@@ -10,7 +10,6 @@ char	*fill_texture(char *word, t_map *map, char *line)
 	texture = ft_strtrim(tmp, " ");
 	free(tmp);
 	fd = open(texture, O_RDONLY);
-	printf("Texture:%s\n", texture);
 	if ((texture[ft_strlen(texture) - 1] != 'm'
 			|| texture[ft_strlen(texture) - 2] != 'p'
 			|| texture[ft_strlen(texture) - 3] != 'x'
@@ -114,6 +113,5 @@ void	fill_color(t_color *color, char *number, t_map *map, char *line)
 		i++;
 	color->b = check_valid_color(map, number + i, line);
 	color->a = 0;
-	printf("Color: %d, %d, %d, %d\n", color->r, color->g, color->b, color->a);
 	free(line);
 }

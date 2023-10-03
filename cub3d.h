@@ -14,8 +14,8 @@
 # define PI 3.14159265359
 # define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGTH 1000
+# define WIN_WIDTH 1500
+# define WIN_HEIGTH 1500
 
 # define MM_EMPTY_COLOR 0x000000FF
 # define MM_WALL_COLOR 0xFFFFFFFF
