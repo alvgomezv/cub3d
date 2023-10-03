@@ -16,7 +16,8 @@ SRC = 	$(SRC_DIR)/hooks.c $(SRC_DIR)/colors_utils.c $(SRC_DIR)/draw_utils.c \
 		$(SRC_DIR)/collisions.c \
 		$(SRC_DIR)/check_for_errors.c $(SRC_DIR)/clean_cells.c \
 		$(SRC_DIR)/fill_cells_from_cub.c $(SRC_DIR)/fill_textures_and_colors.c  \
-		$(SRC_DIR)/inicialize_and_free_map.c $(SRC_DIR)/parse_and_fill_cub.c
+		$(SRC_DIR)/inicialize_and_free_map.c $(SRC_DIR)/parse_and_fill_cub.c \
+		$(SRC_DIR)/raycaster.c
 
 TEST_DIR = testing
 TEST_MAIN = $(TEST_DIR)/test.c

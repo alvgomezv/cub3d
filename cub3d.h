@@ -24,6 +24,7 @@
 # define MM_C_SIZE 40
 # define MM_C_SEP 0
 # define P_COLOR 0x00FF00FF
+# define R_COLOR 0xFF00FFFF
 # define P_SQ 5
 # define P_LINE 10
 # define P_MOV 4
@@ -53,9 +54,22 @@ typedef struct s_player
 	float	angle;
 }		t_player;
 
+typedef struct s_ray
+{
+	float	x;
+	float	y;
+	float	x_offset;
+	float	y_offset;
+	int		map_x;
+	int		map_y;
+	int		map_pos;
+	float	angle;
+}		t_ray;
+
 typedef struct s_map
 {
 	t_player	*player;
+	t_ray		*ray;
 	int			**cells;
 	int			max_cols;
 	int			max_rows;
@@ -106,6 +120,9 @@ void	ft_free_cells(t_map *map);
 
 // Parse and fill cub data
 void	cub_parsing(char *map_route, t_map *map);
+
+// Raycasting
+void	raycaster(t_map *map);
 
 // Main
 void	print_map_cells(t_map *map);
