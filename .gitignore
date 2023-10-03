@@ -17,7 +17,7 @@
 *.exe
 *.out
 *.app
-minishell
+cub3d
 test
 
 # Precompiled Headers
@@ -51,3 +51,4 @@ xcuserdata/
 testing
 *.supp
 *.dSYM
+.vscode
