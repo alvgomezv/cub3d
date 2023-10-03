@@ -5,7 +5,9 @@ NAME=cub3d
 
 SRC_DIR = sources
 MAIN = $(SRC_DIR)/main.c
-#SRC = 	$(SRC_DIR)/executor.c
+SRC = 	$(SRC_DIR)/check_for_errors.c $(SRC_DIR)/clean_cells.c \
+		$(SRC_DIR)/fill_cells_from_cub.c $(SRC_DIR)/fill_textures_and_colors.c  \
+		$(SRC_DIR)/inicialize_and_free_map.c $(SRC_DIR)/parse_and_fill_cub.c
 
 TEST_DIR = testing
 TEST_MAIN = $(TEST_DIR)/executor_test.c
