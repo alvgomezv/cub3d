@@ -78,11 +78,11 @@ void	initialize_player(t_map *map, char direction, int i, int y)
 	map->player->x = 0;
 	map->player->y = 0;
 	if (direction == 'N')
-		map->player->angle = PI / 2;
+		map->player->angle = M_PI / 2;
 	else if (direction == 'S')
-		map->player->angle = PI * 3 / 2;
+		map->player->angle = M_PI * 3 / 2;
 	else if (direction == 'W')
-		map->player->angle = PI;
+		map->player->angle = M_PI;
 	else if (direction == 'E')
 		map->player->angle = 0;
 	map->player->start_col = i;

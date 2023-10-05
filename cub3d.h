@@ -13,6 +13,8 @@
 
 # define PI 3.14159265359
 # define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
+# define DR 0.0174533
+
 
 # define WIN_WIDTH 1500
 # define WIN_HEIGTH 1500
@@ -63,7 +65,15 @@ typedef struct s_ray
 	int		map_x;
 	int		map_y;
 	int		map_pos;
+	float	h_x;
+	float	h_y;
+	float	h_dist;
+	float	v_x;
+	float	v_y;
+	float	v_dist;
+	float	distance;
 	float	angle;
+	float	cos_angle;
 }		t_ray;
 
 typedef struct s_map
