@@ -11,10 +11,11 @@ LIBS=-ldl -lglfw -L$(GLFW_PATH) -pthread -lm $(LIBMLX)/libmlx42.a
 
 SRC_DIR = sources
 MAIN = $(SRC_DIR)/main.c
-SRC = 	$(SRC_DIR)/hooks.c $(SRC_DIR)/colors_utils.c $(SRC_DIR)/draw_utils.c \
-		$(SRC_DIR)/init_structs.c $(SRC_DIR)/draw_minmap.c $(SRC_DIR)/map_check.c \
-		$(SRC_DIR)/collisions.c \
-		$(SRC_DIR)/check_for_errors.c $(SRC_DIR)/clean_cells.c \
+# SRC = 	$(SRC_DIR)/hooks.c $(SRC_DIR)/colors_utils.c $(SRC_DIR)/draw_utils.c \
+# 		$(SRC_DIR)/init_structs.c $(SRC_DIR)/draw_minmap.c $(SRC_DIR)/map_check.c \
+# 		$(SRC_DIR)/collisions.c \
+
+SRC =	$(SRC_DIR)/check_for_errors.c $(SRC_DIR)/clean_cells.c \
 		$(SRC_DIR)/fill_cells_from_cub.c $(SRC_DIR)/fill_textures_and_colors.c  \
 		$(SRC_DIR)/inicialize_and_free_map.c $(SRC_DIR)/parse_and_fill_cub.c \
 		$(SRC_DIR)/raycaster.c
@@ -26,16 +27,14 @@ TEST_SRC =
 OBJ=$(SRC:.c=.o)
 OBJ_TEST=$(TEST_SRC:.c=.o)
 
-LIBFT_DIR=Libft
+LIBFT_DIR=libft
 LIBFT=$(LIBFT_DIR)/libft.a
 
 
 all: libmlx $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ) $(MAIN)
-	@$(CC) $(CFLAGS) $(LIBS) $(HEADERS) $(OBJ) $(MAIN) $(LIBFT) -o $(NAME)
-
-%.o: %.c
+	@$(CC) $(CFLAGS) $(LIBS) $(HEADERS) $(OBJ) $(MAIN) $(LIBFT) -o $(NAME) -lm
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 test: build_test
@@ -45,19 +44,19 @@ build_test: libmlx $(LIBFT) $(OBJ) $(TEST_MAIN)
 	@$(CC) $(OBJ) $(LIBS) $(HEADERS) $(TEST_MAIN) $(LIBFT) -o test
 
 $(LIBFT):
-	@$(MAKE) -C Libft
+	@$(MAKE) -C libft
 
 libmlx:
 	@$(MAKE) -C $(LIBMLX)
 
 clean:	
 		@rm -f ${OBJ}
-		@${MAKE} -C Libft clean
+		@${MAKE} -C libft clean
 
 fclean:	clean
 		@rm -f ${NAME}
 		@rm -rf $(OBJ_DIR)
-		@${MAKE} -C Libft fclean
+		@${MAKE} -C libft fclean
 
 deepclean: clean
 	$(MAKE) -C libft fclean
