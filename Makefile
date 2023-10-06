@@ -13,7 +13,7 @@ SRC_DIR = sources
 MAIN = $(SRC_DIR)/main.c
 SRC = 	$(SRC_DIR)/hooks.c $(SRC_DIR)/colors_utils.c $(SRC_DIR)/draw_utils.c \
 		$(SRC_DIR)/init_structs.c $(SRC_DIR)/draw_minmap.c $(SRC_DIR)/map_check.c \
-		$(SRC_DIR)/collisions.c
+		$(SRC_DIR)/collisions.c $(SRC_DIR)/draw_camera.c
 
 TEST_DIR = testing
 TEST_MAIN = $(TEST_DIR)/test.c
