@@ -16,8 +16,8 @@
 # define DR 0.0174533
 
 
-# define WIN_WIDTH 1500
-# define WIN_HEIGTH 1500
+# define WIN_WIDTH 900
+# define WIN_HEIGTH 500
 
 # define MM_EMPTY_COLOR 0x000000FF
 # define MM_WALL_COLOR 0xFFFFFFFF

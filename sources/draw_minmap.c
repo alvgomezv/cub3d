@@ -44,7 +44,7 @@ void	draw_minmap(t_map *map, t_pxl *tl_corner)
 		tl_corner->y += MM_C_SIZE + MM_C_SEP;
 	}
 	draw_player(map);
-	// raycaster(map);
+	raycaster(map);
 }
 
 void	draw_player(t_map *m)
@@ -62,5 +62,6 @@ void	draw_player(t_map *m)
 	line_pxl2.x = m->player->x + P_LINE * cos(m->player->angle);
 	line_pxl2.y = m->player->y + P_LINE * sin(m->player->angle);
 	draw_line(m->minmap, &line_pxl1, &line_pxl2, tl_player_sq.color);
+	// printf("player x: %d, player y: %d angle: %f \n", m->player->x, m->player->y, m->player->angle);
 	free(tl_player_sq.color);
 }
