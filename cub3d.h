@@ -11,10 +11,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-# define PI 3.14159265359
-# define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
 # define DR 0.0174533
-
 
 # define WIN_WIDTH 900
 # define WIN_HEIGTH 500
@@ -25,6 +22,12 @@
 # define MM_TL_Y 0
 # define MM_C_SIZE 40
 # define MM_C_SEP 0
+
+# define VP_W 512
+# define VP_H 384
+# define FOV 60
+# define RAY_DEG 0.5
+
 # define P_COLOR 0x00FF00FF
 # define R_COLOR 0xFF00FFFF
 # define P_SQ 5
@@ -46,6 +49,19 @@ typedef struct s_pxl
 	int		y;
 	t_color	*color;
 }			t_pxl;
+
+typedef struct s_ray
+{
+	float		iangle;
+	float		dist;
+	t_pxl		*hit_pos;
+	int			wall_type;
+	mlx_image_t	*tex;
+	int			rect_w;
+	int			rect_h;
+	int			rect_x_off;
+	int			rect_tex_x_off;
+}			t_ray;
 
 typedef struct s_player
 {
@@ -90,8 +106,12 @@ typedef struct s_map
 	t_color		*ceiling;
 	t_color		*floor;
 	mlx_t		*mlx;
-	mlx_image_t	*canvas;
+	mlx_image_t	*cam;
 	mlx_image_t	*minmap;
+	mlx_image_t	*N_tex;
+	mlx_image_t	*S_tex;
+	mlx_image_t	*E_tex;
+	mlx_image_t	*W_tex;
 	int			check;
 	int			empty_line;
 	int			top_x;
@@ -104,6 +124,17 @@ enum e_map_cell
 	outside,
 	checked,
 };
+
+enum e_wall_type
+{
+	N_wall,
+	S_wall,
+	E_wall,
+	O_wall,
+};
+
+// UTILS
+float	deg_to_rad(float deg);
 
 // Check errors
 char	*initial_checks(int argc, char *argv, t_map *map);

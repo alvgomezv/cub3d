@@ -1,5 +1,10 @@
 #include "../cub3d.h"
 
+float	deg_to_rad(float deg)
+{
+	return (deg * PI / 180.0);
+}
+
 int	get_cell_type_for_pxl(t_map *map, int x, int y)
 {
 	int	row;

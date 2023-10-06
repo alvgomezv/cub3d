@@ -176,8 +176,8 @@ void	raycaster(t_map *map)
 
 	num_rays = 0;
 	map->ray = (t_ray *)ft_calloc(1, sizeof(t_ray));
-	map->ray->angle = normalize_angle(map->player->angle - DR * 30);
-	while (num_rays < 60)
+	map->ray->angle = normalize_angle(map->player->angle - DR * FOV / 2);
+	while (num_rays < FOV * RAY_DEG)
 	{
 		// check horizontal lines
 		depth = 0;
@@ -194,10 +194,12 @@ void	raycaster(t_map *map)
 		choose_shortest_distance(map);
 		print_ray(map, 0xFF00FFFF);
 
-		// Draw 3D walls 
 		// fix fish eye effect
 		map->ray->cos_angle = normalize_angle(map->player->angle - map->ray->angle);
 		map->ray->distance *= cos(map->ray->cos_angle);
+
+		// Draw 3D walls 
+		
 
 		num_rays++;
 		map->ray->angle = normalize_angle(map->ray->angle + DR);
