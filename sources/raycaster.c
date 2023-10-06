@@ -185,6 +185,7 @@ void	raycaster(t_map *map)
 	num_rays = 0;
 	map->ray = (t_ray *)ft_calloc(1, sizeof(t_ray));
 	map->ray->angle = normalize_angle(map->player->angle - DR * FOV / 2);
+	map->ray->prev_rect_tex_x_off = 0;
 	while (num_rays < FOV / RAY_DEG)
 	{
 		// check horizontal lines
@@ -207,6 +208,7 @@ void	raycaster(t_map *map)
 		map->ray->dist *= cos(map->ray->iangle);
 		map->ray->iray = num_rays;
 		// Draw 3D walls 
+		// printf("x:%f y:%f\n", map->ray->x, map->ray->y);
 		draw_wall_rect(map, map->ray);
 
 		num_rays++;

@@ -20,20 +20,20 @@
 # define MM_WALL_COLOR 0xFFFFFFFF
 # define MM_TL_X 0
 # define MM_TL_Y 0
-# define MM_C_SIZE 40
+# define MM_C_SIZE 30
 # define MM_C_SEP 0
 
-# define VP_W 512
-# define VP_H 384
+# define VP_W 800
+# define VP_H 450
 # define FOV 60
-# define RAY_DEG 0.5
+# define RAY_DEG 0.1
 
 # define P_COLOR 0x00FF00FF
 # define R_COLOR 0xFF00FFFF
-# define P_SQ 5
-# define P_LINE 10
-# define P_MOV 4
-# define P_ROT 0.1
+# define P_SQ 3
+# define P_LINE 0
+# define P_MOV 2
+# define P_ROT 0.05
 
 typedef struct s_color
 {
@@ -85,6 +85,7 @@ typedef struct s_ray
 	int			rect_h;
 	int			rect_x_off;
 	int			rect_tex_x_off;
+	int			prev_rect_tex_x_off;
 }		t_ray;
 
 typedef struct s_map

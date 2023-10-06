@@ -34,7 +34,7 @@ all: libmlx $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ) $(MAIN)
 	@$(CC) $(CFLAGS) $(LIBS) $(HEADERS) $(OBJ) $(MAIN) $(LIBFT) -o $(NAME)
-	$(CC) $(CFLAGS) -c $< -o $@ 
+
 
 test: build_test
 	@./test
