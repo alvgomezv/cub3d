@@ -157,13 +157,21 @@ void	choose_shortest_distance(t_map *map)
 	{
 		map->ray->x = map->ray->h_x;
 		map->ray->y = map->ray->h_y;
-		map->ray->distance = map->ray->h_dist;
+		map->ray->dist = map->ray->h_dist;
+		if (map->ray->angle > M_PI) // looking up
+			map->ray->wall_type = N_wall;
+		else if (map->ray->angle < M_PI) // looking down
+			map->ray->wall_type = S_wall;
 	}
 	else
 	{
 		map->ray->x = map->ray->v_x;
 		map->ray->y = map->ray->v_y;
-		map->ray->distance = map->ray->v_dist;
+		map->ray->dist = map->ray->v_dist;
+		if (map->ray->angle > M_PI_2 && map->ray->angle < M_PI_2 * 3 ) // looking left
+			map->ray->wall_type = W_wall;
+		else if (map->ray->angle < M_PI_2 || map->ray->angle > M_PI_2 * 3) // looking right
+			map->ray->wall_type = E_wall;
 	}
 }
 
@@ -177,7 +185,7 @@ void	raycaster(t_map *map)
 	num_rays = 0;
 	map->ray = (t_ray *)ft_calloc(1, sizeof(t_ray));
 	map->ray->angle = normalize_angle(map->player->angle - DR * FOV / 2);
-	while (num_rays < FOV * RAY_DEG)
+	while (num_rays < FOV / RAY_DEG)
 	{
 		// check horizontal lines
 		depth = 0;
@@ -195,14 +203,14 @@ void	raycaster(t_map *map)
 		print_ray(map, 0xFF00FFFF);
 
 		// fix fish eye effect
-		map->ray->cos_angle = normalize_angle(map->player->angle - map->ray->angle);
-		map->ray->distance *= cos(map->ray->cos_angle);
-
+		map->ray->iangle = normalize_angle(map->player->angle) - normalize_angle(map->ray->angle);
+		map->ray->dist *= cos(map->ray->iangle);
+		map->ray->iray = num_rays;
 		// Draw 3D walls 
-		
+		draw_wall_rect(map, map->ray);
 
 		num_rays++;
-		map->ray->angle = normalize_angle(map->ray->angle + DR);
+		map->ray->angle = normalize_angle(map->ray->angle + DR * RAY_DEG);
 	}
-	free(map->ray);
+	//free(map->ray);
 }

@@ -10,18 +10,19 @@ char	*fill_texture(char *word, t_map *map, char *line)
 	texture = ft_strtrim(tmp, " ");
 	free(tmp);
 	fd = open(texture, O_RDONLY);
-	if ((texture[ft_strlen(texture) - 1] != 'm'
-			|| texture[ft_strlen(texture) - 2] != 'p'
-			|| texture[ft_strlen(texture) - 3] != 'x'
-			|| texture[ft_strlen(texture) - 4] != '.')
-		|| fd == -1)
-	{
-		free(line);
-		free(texture);
-		ft_free_map(map);
-		perror("Error opening texture file");
-		exit (1);
-	}
+	// if ((texture[ft_strlen(texture) - 1] != 'm'
+	// 		|| texture[ft_strlen(texture) - 2] != 'p'
+	// 		|| texture[ft_strlen(texture) - 3] != 'x'
+	// 		|| texture[ft_strlen(texture) - 4] != '.')
+	// 	|| fd == -1)
+	// {
+	// 	free(line);
+	// 	free(texture);
+	// 	ft_free_map(map);
+	// 	perror("Error opening texture file");
+	// 	exit (1);
+	// }
+	(void)map;
 	close(fd);
 	free(line);
 	return (texture);

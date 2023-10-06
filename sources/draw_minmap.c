@@ -13,13 +13,13 @@ void	choose_square_to_draw(t_map *map, t_pxl *tl_corner, int x, int y)
 	}
 }
 
-void	clean_minmap_background(t_map *map)
+void	clean_img(mlx_image_t *img)
 {
 	unsigned int	i;
 
 	i = -1;
-	while (++i < map->minmap->height * map->minmap->width * 4)
-		map->minmap->pixels[i] = 0;
+	while (++i < img->height * img->width * 4)
+		img->pixels[i] = 0;
 }
 
 void	draw_minmap(t_map *map, t_pxl *tl_corner)
@@ -31,7 +31,7 @@ void	draw_minmap(t_map *map, t_pxl *tl_corner)
 	x = -1;
 	y = -1;
 	orig_x = tl_corner->x;
-	clean_minmap_background(map);
+	clean_img(map->minmap);
 	while (++y < map->max_rows)
 	{
 		while (++x < map->max_cols)
@@ -44,6 +44,7 @@ void	draw_minmap(t_map *map, t_pxl *tl_corner)
 		tl_corner->y += MM_C_SIZE + MM_C_SEP;
 	}
 	draw_player(map);
+	clean_img(map->cam);
 	raycaster(map);
 }
 

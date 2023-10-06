@@ -2,7 +2,7 @@
 
 float	deg_to_rad(float deg)
 {
-	return (deg * PI / 180.0);
+	return (deg * M_PI / 180.0);
 }
 
 int	get_cell_type_for_pxl(t_map *map, int x, int y)
@@ -22,8 +22,8 @@ int	circle_overlaps(t_map *map, int x_c, int y_c)
 	angle = 0;
 	while (angle < 360)
 	{
-		if (get_cell_type_for_pxl(map, x_c + P_LINE * cos(DEG_TO_RAD(angle)),
-				y_c + P_LINE * sin(DEG_TO_RAD(angle))) == wall)
+		if (get_cell_type_for_pxl(map, x_c + P_LINE * cos(deg_to_rad(angle)),
+				y_c + P_LINE * sin(deg_to_rad(angle))) == wall)
 			return (1);
 		angle += 10;
 	}

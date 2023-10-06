@@ -66,9 +66,14 @@ int	main(int argc, char **argv)
 	if (!map->mlx)
 		return (1);
 	// get canvas img size
-	map->canvas = mlx_new_image(map->mlx, 300, 300);
-	if (!map->canvas)
+	map->cam = mlx_new_image(map->mlx, VP_W, VP_H);
+	if (!map->cam)
 		return (1);
+	
+	map->N_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->no_texture));
+	map->S_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->so_texture));
+	map->E_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->ea_texture));
+	map->W_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->we_texture));
 	// get minmap img size
 	map->minmap = mlx_new_image(map->mlx, map->max_cols
 			* (MM_C_SIZE + MM_C_SEP), map->max_rows * (MM_C_SIZE + MM_C_SEP));
@@ -77,6 +82,8 @@ int	main(int argc, char **argv)
 	tl_minmap.x = MM_TL_X;
 	tl_minmap.y = MM_TL_Y;
 	mlx_image_to_window(map->mlx, map->minmap, 0, 0);
+	mlx_image_to_window(map->mlx, map->cam, map->max_cols
+			* (MM_C_SIZE + MM_C_SEP), 0);
 	draw_minmap(map, &tl_minmap);
 	mlx_key_hook(map->mlx, &disc_hook, map);
 	mlx_loop_hook(map->mlx, cont_hook, map);

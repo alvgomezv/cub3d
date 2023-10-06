@@ -1,8 +1,8 @@
-		NO ./texture.xpm
-SO ./texture.xpm
-     WE ./texture.xpm
+		NO ./acacia_log.png
+SO ./andesite.png
+     WE ./birch_log.png
 
-EA ./texture.xpm
+EA ./grass_block_side.png
 
 F 228,100,0             
 

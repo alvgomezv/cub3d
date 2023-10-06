@@ -4,9 +4,9 @@ void	get_ray_calcs(t_map *map, t_ray *ray)
 {
 	int	pos;
 
-	ray->rect_h = (int)(VP_H * MM_C_SIZE / (ray->dist * cos(ray->iangle)));
+	ray->rect_h = (int)(VP_H * MM_C_SIZE / (ray->dist));
 	ray->rect_w = (int)(VP_W / (FOV / RAY_DEG));
-	ray->rect_x_off = (int)(VP_W * ray->iangle / FOV);
+	ray->rect_x_off = (int)(VP_W * ray->iray / (FOV / RAY_DEG));
 	if (ray->wall_type == N_wall)
 		ray->tex = map->N_tex;
 	else if (ray->wall_type == S_wall)
@@ -16,10 +16,10 @@ void	get_ray_calcs(t_map *map, t_ray *ray)
 	else
 		ray->tex = map->W_tex;
 	if (ray->wall_type == N_wall || ray->wall_type == S_wall)
-		pos = ray->hit_pos->x;
+		pos = ray->x;
 	else
-		pos = ray->hit_pos->y;
-	ray->rect_tex_x_off = (ray->hit_pos->x % MM_C_SIZE) \
+		pos = ray->y;
+	ray->rect_tex_x_off = ((int)ray->x % MM_C_SIZE) \
 		* ray->tex->width / MM_C_SIZE;
 }
 
@@ -29,7 +29,7 @@ void	get_tex_pxl_color(t_map *map, t_pxl *rect, t_ray *ray)
 
 	tex.x = ray->rect_tex_x_off \
 			+ ((rect->x - ray->rect_x_off) / ray->rect_w) * ray->tex->width;
-	if (tex.x > map->cam->width)
+	if (tex.x > (int)map->cam->width)
 		tex.x = map->cam->width;
 	tex.y = ((rect->y - ((VP_H - ray->rect_h) / 2)) / ray->rect_h) \
 		* ray->tex->height;

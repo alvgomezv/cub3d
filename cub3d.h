@@ -13,8 +13,8 @@
 
 # define DR 0.0174533
 
-# define WIN_WIDTH 900
-# define WIN_HEIGTH 500
+# define WIN_WIDTH 1500
+# define WIN_HEIGTH 1000
 
 # define MM_EMPTY_COLOR 0x000000FF
 # define MM_WALL_COLOR 0xFFFFFFFF
@@ -50,19 +50,6 @@ typedef struct s_pxl
 	t_color	*color;
 }			t_pxl;
 
-typedef struct s_ray
-{
-	float		iangle;
-	float		dist;
-	t_pxl		*hit_pos;
-	int			wall_type;
-	mlx_image_t	*tex;
-	int			rect_w;
-	int			rect_h;
-	int			rect_x_off;
-	int			rect_tex_x_off;
-}			t_ray;
-
 typedef struct s_player
 {
 	int		start_col;
@@ -87,9 +74,17 @@ typedef struct s_ray
 	float	v_x;
 	float	v_y;
 	float	v_dist;
-	float	distance;
 	float	angle;
-	float	cos_angle;
+
+	float		iangle;
+	float		dist;
+	int			iray;
+	int			wall_type;
+	mlx_image_t	*tex;
+	int			rect_w;
+	int			rect_h;
+	int			rect_x_off;
+	int			rect_tex_x_off;
 }		t_ray;
 
 typedef struct s_map
@@ -130,7 +125,7 @@ enum e_wall_type
 	N_wall,
 	S_wall,
 	E_wall,
-	O_wall,
+	W_wall,
 };
 
 // UTILS
@@ -179,6 +174,8 @@ void	draw_player(t_map *m);
 void	draw_pixel(mlx_image_t *img, t_pxl *pxl);
 void	draw_line(mlx_image_t *img, t_pxl *pxl1, t_pxl *pxl2, t_color *c);
 void	draw_square(mlx_image_t *img, t_pxl *tl_corner, int size, t_color *c);
+void	draw_wall_rect(t_map *map, t_ray *ray);
+void	clean_img(mlx_image_t *img);
 
 // STRUCT UTILS
 t_color	*init_color(int r, int g, int b, int a);
