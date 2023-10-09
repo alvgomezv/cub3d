@@ -31,8 +31,8 @@
 # define P_COLOR 0x00FF00FF
 # define R_COLOR 0xFF00FFFF
 # define P_SQ 3
-# define P_LINE 0
-# define P_MOV 2
+# define P_LINE 3
+# define P_MOV 5
 # define P_ROT 0.05
 
 typedef struct s_color
@@ -130,7 +130,8 @@ enum e_wall_type
 };
 
 // UTILS
-float	deg_to_rad(float deg);
+float	deg_rad(float angle, int to_rad);
+float	normalize_angle(float angle);
 
 // Check errors
 char	*initial_checks(int argc, char *argv, t_map *map);
@@ -187,6 +188,6 @@ t_color	*int_to_color(int rgba);
 // HOOKS
 void	cont_hook(void *param);
 void	disc_hook(mlx_key_data_t key, void *param);
-void	move_if_no_collision(t_map *map, int pxls_to_move, int move_x_axis);
+void	move_if_no_collision(t_map *map, int key);
 
 #endif

@@ -1,8 +1,10 @@
 #include "../cub3d.h"
 
-float	deg_to_rad(float deg)
+float	deg_rad(float angle, int to_rad)
 {
-	return (deg * M_PI / 180.0);
+	if (to_rad)
+		return (angle * M_PI / 180.0);
+	return (angle * 180.0 / M_PI);
 }
 
 int	get_cell_type_for_pxl(t_map *map, int x, int y)
@@ -22,28 +24,42 @@ int	circle_overlaps(t_map *map, int x_c, int y_c)
 	angle = 0;
 	while (angle < 360)
 	{
-		if (get_cell_type_for_pxl(map, x_c + P_LINE * cos(deg_to_rad(angle)),
-				y_c + P_LINE * sin(deg_to_rad(angle))) == wall)
+		if (get_cell_type_for_pxl(map, x_c + P_LINE * cos(deg_rad(angle, 1)),
+				y_c + P_LINE * sin(deg_rad(angle, 1))) == wall)
 			return (1);
-		angle += 10;
+		angle += 1;
 	}
 	return (0);
 }
 
-void	move_if_no_collision(t_map *map, int pxls_to_move, int move_x_axis)
+void	move_if_no_collision(t_map *map, int key)
 {
-	int	new_pos;
+	int	new_x;
+	int	new_y;
 
-	if (move_x_axis)
+	if (key == MLX_KEY_W)
 	{
-		new_pos = map->player->x + pxls_to_move;
-		if (!circle_overlaps(map, new_pos, map->player->y))
-			map->player->x += pxls_to_move;
+		new_x = (double)map->player->x + floor((double)P_MOV * cos(map->player->angle));
+		new_y = (double)map->player->y + floor((double)P_MOV * sin(map->player->angle));
+	}
+	else if (key == MLX_KEY_S)
+	{
+		new_x = (double)map->player->x - floor((double)P_MOV * cos(map->player->angle));
+		new_y = (double)map->player->y - floor((double)P_MOV * sin(map->player->angle));
+	}
+	else if (key == MLX_KEY_D)
+	{
+		new_x = (double)map->player->x + floor((double)P_MOV * cos(normalize_angle(map->player->angle + M_PI_2)));
+		new_y = (double)map->player->y + floor((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
 	}
 	else
 	{
-		new_pos = map->player->y + pxls_to_move;
-		if (!circle_overlaps(map, map->player->x, new_pos))
-			map->player->y += pxls_to_move;
+		new_x = (double)map->player->x - floor((double)P_MOV * cos(normalize_angle(map->player->angle + M_PI_2)));
+		new_y = (double)map->player->y - floor((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
+	}
+	if (!circle_overlaps(map, new_x, new_y))
+	{ 
+		map->player->x = new_x;
+		map->player->y = new_y;
 	}
 }

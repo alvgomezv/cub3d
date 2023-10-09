@@ -6,29 +6,18 @@
 void	apply_movement(t_map *map)
 {
 	if (mlx_is_key_down(map->mlx, MLX_KEY_A))
-	{
-		move_if_no_collision(map, -P_MOV, 1);
-	}
+		move_if_no_collision(map, MLX_KEY_A);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
-	{
-		move_if_no_collision(map, P_MOV, 1);
-	}
+		move_if_no_collision(map, MLX_KEY_D);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_W))
-	{
-		move_if_no_collision(map, -P_MOV, 0);
-	}
+		move_if_no_collision(map, MLX_KEY_W);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_S))
-	{
-		move_if_no_collision(map, P_MOV, 0);
-	}
+		move_if_no_collision(map, MLX_KEY_S);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
-	{
-		map->player->angle -= P_ROT;
-	}
+		map->player->angle = normalize_angle(map->player->angle - P_ROT);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-	{
-		map->player->angle += P_ROT;
-	}
+		map->player->angle = normalize_angle(map->player->angle + P_ROT);
+
 }
 
 void	cont_hook(void *param)
