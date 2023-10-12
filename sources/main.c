@@ -55,6 +55,35 @@ void	print_map_cells(t_map *map)
 // 	return data;
 // }
 
+int	load_textures(t_map *map)
+{
+	map->texture = mlx_load_png(map->no_texture);
+	if (!map->texture)
+		return (1);
+	map->N_tex = mlx_texture_to_image(map->mlx, map->texture);
+	if (!map->N_tex)
+		return (1);
+	map->texture = mlx_load_png(map->so_texture);
+	if (!map->texture)
+		return (1);
+	map->S_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->so_texture));
+	if (!map->S_tex)
+		return (1);
+	map->texture = mlx_load_png(map->ea_texture);
+	if (!map->texture)
+		return (1);
+	map->E_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->ea_texture));
+	if (!map->E_tex)
+		return (1);
+	map->texture = mlx_load_png(map->we_texture);
+	if (!map->texture)
+		return (1);
+	map->W_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->we_texture));
+	if (!map->W_tex)
+		return (1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_pxl	tl_minmap;
@@ -70,10 +99,8 @@ int	main(int argc, char **argv)
 	if (!map->cam)
 		return (1);
 	
-	map->N_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->no_texture));
-	map->S_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->so_texture));
-	map->E_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->ea_texture));
-	map->W_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->we_texture));
+	if (load_textures(map))
+		return (1);
 	// get minmap img size
 	map->minmap = mlx_new_image(map->mlx, map->max_cols
 			* SQ_SIZE * MM_SCALE, map->max_rows * SQ_SIZE * MM_SCALE);

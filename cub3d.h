@@ -97,27 +97,28 @@ typedef struct s_ray
 
 typedef struct s_map
 {
-	t_player	*player;
-	t_ray		*ray;
-	int			**cells;
-	int			max_cols;
-	int			max_rows;
-	char		*no_texture;
-	char		*so_texture;
-	char		*we_texture;
-	char		*ea_texture;
-	t_color		*ceiling;
-	t_color		*floor;
-	mlx_t		*mlx;
-	mlx_image_t	*cam;
-	mlx_image_t	*minmap;
-	mlx_image_t	*N_tex;
-	mlx_image_t	*S_tex;
-	mlx_image_t	*E_tex;
-	mlx_image_t	*W_tex;
-	int			check;
-	int			empty_line;
-	int			top_x;
+	t_player		*player;
+	t_ray			*ray;
+	int				**cells;
+	int				max_cols;
+	int				max_rows;
+	char			*no_texture;
+	char			*so_texture;
+	char			*we_texture;
+	char			*ea_texture;
+	t_color			*ceiling;
+	t_color			*floor;
+	mlx_t			*mlx;
+	mlx_image_t		*cam;
+	mlx_image_t		*minmap;
+	mlx_image_t		*N_tex;
+	mlx_image_t		*S_tex;
+	mlx_image_t		*E_tex;
+	mlx_image_t		*W_tex;
+	mlx_texture_t	*texture;
+	int				check;
+	int				empty_line;
+	int				top_x;
 }		t_map;
 
 enum e_map_cell
