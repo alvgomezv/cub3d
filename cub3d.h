@@ -13,20 +13,21 @@
 
 # define DR 0.0174533
 
-# define WIN_WIDTH 1500
-# define WIN_HEIGTH 1000
+# define WIN_WIDTH 1920
+# define WIN_HEIGTH 1080
+
+# define SQ_SIZE 50
 
 # define MM_EMPTY_COLOR 0x000000FF
 # define MM_WALL_COLOR 0xFFFFFFFF
 # define MM_TL_X 0
 # define MM_TL_Y 0
-# define MM_C_SIZE 30
-# define MM_C_SEP 0
+# define MM_SCALE 0.2
 
+# define VP_W 1500
+# define VP_H 1000
 # define VP_TL_X 0
 # define VP_TL_Y 0
-# define VP_W 800
-# define VP_H 450
 # define FOV 60
 # define RAY_DEG 0.1
 

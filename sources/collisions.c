@@ -12,8 +12,8 @@ int	get_cell_type_for_pxl(t_map *map, int x, int y)
 	int	row;
 	int	col;
 
-	col = x / (MM_C_SIZE + MM_C_SEP);
-	row = y / (MM_C_SIZE + MM_C_SEP);
+	col = x / (SQ_SIZE);
+	row = y / (SQ_SIZE);
 	return (map->cells[row][col]);
 }
 

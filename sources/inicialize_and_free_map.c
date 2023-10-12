@@ -88,7 +88,7 @@ void	initialize_player(t_map *map, char direction, int i, int y)
 	map->player->start_col = i;
 	map->player->start_row = y;
 	map->player->x = (map->player->start_col - 1)
-		* (MM_C_SIZE + MM_C_SEP) + ((MM_C_SIZE + MM_C_SEP) / 2);
+		* (SQ_SIZE) + ((SQ_SIZE) / 2);
 	map->player->y = (map->player->start_row - 1)
-		* (MM_C_SIZE + MM_C_SEP) + ((MM_C_SIZE + MM_C_SEP) / 2);
+		* (SQ_SIZE) + ((SQ_SIZE) / 2);
 }

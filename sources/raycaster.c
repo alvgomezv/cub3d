@@ -26,16 +26,16 @@ void	horizontal_lines_ray_angle_check(t_map *map, int *depth, float a_tan)
 		}
 		else if (map->ray->angle > M_PI) // looking up
 		{
-			map->ray->y = (map->player->y / MM_C_SIZE) * MM_C_SIZE - 0.0001;
+			map->ray->y = (map->player->y / SQ_SIZE) * SQ_SIZE - 0.0001;
 			map->ray->x = (map->player->y - map->ray->y) * a_tan + map->player->x;
-			map->ray->y_offset = -MM_C_SIZE;
+			map->ray->y_offset = -SQ_SIZE;
 			map->ray->x_offset = -map->ray->y_offset * a_tan;
 		}
 		else if (map->ray->angle < M_PI) // looking down
 		{
-			map->ray->y = (map->player->y / MM_C_SIZE) * MM_C_SIZE + MM_C_SIZE;
+			map->ray->y = (map->player->y / SQ_SIZE) * SQ_SIZE + SQ_SIZE;
 			map->ray->x = (map->player->y - map->ray->y) * a_tan + map->player->x;
-			map->ray->y_offset = MM_C_SIZE;
+			map->ray->y_offset = SQ_SIZE;
 			map->ray->x_offset = -map->ray->y_offset * a_tan;
 		}
 }
@@ -44,13 +44,13 @@ void	horizontal_lines_depth_check(t_map *map, int depth)
 {
 	while (depth < 30)
 	{
-		map->ray->map_x = (map->ray->x / MM_C_SIZE);
+		map->ray->map_x = (map->ray->x / SQ_SIZE);
 		//temporal fix
 		while (map->ray->map_x > map->max_cols - 1)
 			map->ray->map_x--;
 		while (map->ray->map_x < 0)
 			map->ray->map_x++;
-		map->ray->map_y = (map->ray->y / MM_C_SIZE);
+		map->ray->map_y = (map->ray->y / SQ_SIZE);
 		//temporal fix
 		while (map->ray->map_y > map->max_rows - 1)
 			map->ray->map_y--;
@@ -81,12 +81,12 @@ void	print_ray(t_map *map, int color)
 	t_pxl	*pxl_ray;
 
 	pxl_player = (t_pxl *)ft_calloc(1, sizeof(t_pxl));
-	pxl_player->x = map->player->x;
-	pxl_player->y = map->player->y;
+	pxl_player->x = map->player->x * MM_SCALE;
+	pxl_player->y = map->player->y * MM_SCALE;
 	pxl_player->color = int_to_color(color);
 	pxl_ray = (t_pxl *)ft_calloc(1, sizeof(t_pxl));
-	pxl_ray->x = map->ray->x;
-	pxl_ray->y = map->ray->y;
+	pxl_ray->x = map->ray->x * MM_SCALE;
+	pxl_ray->y = map->ray->y * MM_SCALE;
 	pxl_ray->color = int_to_color(color);
 	draw_line(map->minmap, pxl_player, pxl_ray, int_to_color(color));
 }
@@ -104,16 +104,16 @@ void	vertical_lines_ray_angle_check(t_map *map, int *depth, float ntan)
 	}
 	else if (map->ray->angle > M_PI_2 && map->ray->angle < M_PI_2 * 3 ) // looking left
 	{
-		map->ray->x = (map->player->x / MM_C_SIZE) * MM_C_SIZE - 0.0001;
+		map->ray->x = (map->player->x / SQ_SIZE) * SQ_SIZE - 0.0001;
 		map->ray->y = (map->player->x - map->ray->x) * ntan + map->player->y;
-		map->ray->x_offset = -MM_C_SIZE;
+		map->ray->x_offset = -SQ_SIZE;
 		map->ray->y_offset = -map->ray->x_offset * ntan;
 	}
 	else if (map->ray->angle < M_PI_2 || map->ray->angle > M_PI_2 * 3) // looking right
 	{
-		map->ray->x = (map->player->x / MM_C_SIZE) * MM_C_SIZE + MM_C_SIZE;
+		map->ray->x = (map->player->x / SQ_SIZE) * SQ_SIZE + SQ_SIZE;
 		map->ray->y = (map->player->x - map->ray->x) * ntan + map->player->y;
-		map->ray->x_offset = MM_C_SIZE;
+		map->ray->x_offset = SQ_SIZE;
 		map->ray->y_offset = -map->ray->x_offset * ntan;
 	}
 }
@@ -122,13 +122,13 @@ void	vertical_lines_depth_check(t_map *map, int depth)
 {
 	while (depth < 30)
 	{
-		map->ray->map_x = ((int)map->ray->x / MM_C_SIZE);
+		map->ray->map_x = ((int)map->ray->x / SQ_SIZE);
 		//temporal fix
 		while (map->ray->map_x > map->max_cols - 1)
 			map->ray->map_x--;
 		while (map->ray->map_x < 0)
 			map->ray->map_x++;
-		map->ray->map_y = ((int)map->ray->y / MM_C_SIZE);
+		map->ray->map_y = ((int)map->ray->y / SQ_SIZE);
 		//temporal fix
 		while (map->ray->map_y > map->max_rows - 1)
 			map->ray->map_y--;
@@ -214,5 +214,5 @@ void	raycaster(t_map *map)
 		num_rays++;
 		map->ray->angle = normalize_angle(map->ray->angle + DR * RAY_DEG);
 	}
-	//free(map->ray);
+	free(map->ray);
 }

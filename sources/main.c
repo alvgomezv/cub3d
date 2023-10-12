@@ -49,8 +49,8 @@ void	print_map_cells(t_map *map)
 // 	data->player = (t_player *) ft_calloc(1, sizeof(t_player));
 // 	data->player->start_col = 3;
 // 	data->player->start_row = 3;
-// 	data->player->x = (data->player->start_col - 1) * (MM_C_SIZE + MM_C_SEP) + ((MM_C_SIZE + MM_C_SEP) / 2);
-// 	data->player->y = (data->player->start_row - 1) * (MM_C_SIZE + MM_C_SEP) + ((MM_C_SIZE + MM_C_SEP) / 2);
+// 	data->player->x = (data->player->start_col - 1) * (SQ_SIZE) + ((SQ_SIZE) / 2);
+// 	data->player->y = (data->player->start_row - 1) * (SQ_SIZE) + ((SQ_SIZE) / 2);
 // 	data->player->angle = M_PI_2 * 3;
 // 	return data;
 // }
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 
 	map = initialize_map_data();
 	cub_parsing(initial_checks(argc, argv[1], map), map);
-	map->mlx = mlx_init(WIN_WIDTH, WIN_HEIGTH, "Cub3d", 1);
+	map->mlx = mlx_init(VP_W, VP_H, "Cub3d", 1);
 	if (!map->mlx)
 		return (1);
 	// get canvas img size
@@ -76,16 +76,17 @@ int	main(int argc, char **argv)
 	map->W_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->we_texture));
 	// get minmap img size
 	map->minmap = mlx_new_image(map->mlx, map->max_cols
-			* (MM_C_SIZE + MM_C_SEP), map->max_rows * (MM_C_SIZE + MM_C_SEP));
+			* SQ_SIZE * MM_SCALE, map->max_rows * SQ_SIZE * MM_SCALE);
 	if (!map->minmap)
 		return (1);
 	tl_minmap.x = MM_TL_X;
 	tl_minmap.y = MM_TL_Y;
+	mlx_image_to_window(map->mlx, map->cam, VP_TL_X, VP_TL_Y);
 	mlx_image_to_window(map->mlx, map->minmap, MM_TL_X, MM_TL_X);
-	mlx_image_to_window(map->mlx, map->cam, map->max_cols
-			* (MM_C_SIZE + MM_C_SEP), 0);
+
 	draw_minmap(map, &tl_minmap);
 	draw_camera(map);
+
 	mlx_key_hook(map->mlx, &disc_hook, map);
 	mlx_loop_hook(map->mlx, cont_hook, map);
 	mlx_loop(map->mlx);

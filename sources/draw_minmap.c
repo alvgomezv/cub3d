@@ -8,7 +8,7 @@ void	choose_square_to_draw(t_map *map, t_pxl *tl_corner, int x, int y)
 		tl_corner->color = int_to_color(MM_WALL_COLOR);
 	if (map->cells[y][x] != outside)
 	{
-		draw_square(map->minmap, tl_corner, MM_C_SIZE, tl_corner->color);
+		draw_square(map->minmap, tl_corner, SQ_SIZE, tl_corner->color);
 		// free(tl_corner->color);
 	}
 }
@@ -37,11 +37,11 @@ void	draw_minmap(t_map *map, t_pxl *tl_corner)
 		while (++x < map->max_cols)
 		{
 			choose_square_to_draw(map, tl_corner, x, y);
-			tl_corner->x += MM_C_SIZE + MM_C_SEP;
+			tl_corner->x += SQ_SIZE * MM_SCALE;
 		}
 		x = -1;
 		tl_corner->x = orig_x;
-		tl_corner->y += MM_C_SIZE + MM_C_SEP;
+		tl_corner->y += SQ_SIZE * MM_SCALE;
 	}
 	draw_player(map);
 }
@@ -52,14 +52,14 @@ void	draw_player(t_map *m)
 	t_pxl	line_pxl1;
 	t_pxl	line_pxl2;
 
-	tl_player_sq.x = m->player->x - P_SQ / 2;
-	tl_player_sq.y = m->player->y - P_SQ / 2;
+	tl_player_sq.x = m->player->x * MM_SCALE - P_SQ / 2;
+	tl_player_sq.y = m->player->y * MM_SCALE - P_SQ / 2;
 	tl_player_sq.color = int_to_color(P_COLOR);
 	draw_square(m->minmap, &tl_player_sq, P_SQ, tl_player_sq.color);
-	line_pxl1.x = m->player->x;
-	line_pxl1.y = m->player->y;
-	line_pxl2.x = m->player->x + P_LINE * cos(m->player->angle);
-	line_pxl2.y = m->player->y + P_LINE * sin(m->player->angle);
+	line_pxl1.x = m->player->x * MM_SCALE;
+	line_pxl1.y = m->player->y * MM_SCALE;
+	line_pxl2.x = m->player->x * MM_SCALE + P_LINE * cos(m->player->angle);
+	line_pxl2.y = m->player->y * MM_SCALE + P_LINE * sin(m->player->angle);
 	draw_line(m->minmap, &line_pxl1, &line_pxl2, tl_player_sq.color);
 	// printf("player x: %d, player y: %d angle: %f \n", m->player->x, m->player->y, m->player->angle);
 	free(tl_player_sq.color);

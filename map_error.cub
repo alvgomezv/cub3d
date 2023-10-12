@@ -1,13 +1,13 @@
-SO ./acacia_log.png
 		NO ./andesite.png
+SO ./acacia_log.png
      WE ./grass_block_side.png
 
-F 100,100,100             
 EA ./birch_log.png
+
+F 100,100,100             
 
 
 C 100,100,150
-
 
 		
 11111111111111111111111
