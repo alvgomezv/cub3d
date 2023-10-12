@@ -81,8 +81,8 @@ int	main(int argc, char **argv)
 		return (1);
 	tl_minmap.x = MM_TL_X;
 	tl_minmap.y = MM_TL_Y;
-	mlx_image_to_window(map->mlx, map->cam, VP_TL_X, VP_TL_Y);
 	mlx_image_to_window(map->mlx, map->minmap, MM_TL_X, MM_TL_X);
+	mlx_image_to_window(map->mlx, map->cam, VP_TL_X, VP_TL_Y);
 
 	draw_minmap(map, &tl_minmap);
 	draw_camera(map);

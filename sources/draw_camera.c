@@ -85,6 +85,7 @@ void	draw_camera(t_map *map)
 {
 	t_pxl	tl_crn;
 	t_pxl	br_crn;
+	t_pxl	mm_center;
 
 	tl_crn.x = 0;
 	tl_crn.y = 0;
@@ -95,5 +96,10 @@ void	draw_camera(t_map *map)
 	br_crn.y = VP_H;
 	draw_rect(map->cam, &tl_crn, &br_crn, map->floor);
 	raycaster(map);
+	mm_center.x = MM_RADIUS;
+	mm_center.y = MM_RADIUS;
+	mm_center.color = init_color(0, 0, 0, 0);
+	draw_circle(map->cam, &mm_center, MM_RADIUS, mm_center.color);
+	free(mm_center.color);
 }
 

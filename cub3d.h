@@ -23,6 +23,7 @@
 # define MM_TL_X 0
 # define MM_TL_Y 0
 # define MM_SCALE 0.2
+# define MM_RADIUS 100
 
 # define VP_W 1500
 # define VP_H 1000
@@ -186,6 +187,7 @@ void	draw_square(mlx_image_t *img, t_pxl *tl_corner, int size, t_color *c);
 void	draw_wall_rect(t_map *map, t_ray *ray);
 void	clean_img(mlx_image_t *img);
 void	draw_rect(mlx_image_t *img, t_pxl *tl_crn, t_pxl *br_crn, t_color *c);
+void	draw_circle(mlx_image_t *img, t_pxl *center, int size, t_color *c);
 
 // STRUCT UTILS
 t_color	*init_color(int r, int g, int b, int a);

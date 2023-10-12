@@ -78,6 +78,29 @@ void	draw_rect(mlx_image_t *img, t_pxl *tl_crn, t_pxl *br_crn, t_color *c)
 	}
 }
 
+void	draw_circle(mlx_image_t *img, t_pxl *center, int size, t_color *c)
+{
+	t_pxl	offset;
+	t_pxl	pxl;
+	int		calc;
 
+	offset.y = -size;
+	offset.x = -size;
+	pxl.color = c;
+	while (++offset.x < size)
+	{
+		while (++offset.y < size)
+		{
+			calc = (int) sqrt((double)(offset.x * offset.x + offset.y * offset.y));
+			if (calc < size)
+			{
+				pxl.x = center->x + offset.x;
+				pxl.y = center->y + offset.y;
+				draw_pixel(img, &pxl);
+			}
+		}
+		offset.y = -size;
+	}
+}
 
 
