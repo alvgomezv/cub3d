@@ -1,8 +1,8 @@
-		NO ./acacia_log.png
-SO ./cage.png
-     WE ./birch_log.png
+		NO ./andesite.png
+SO ./acacia_log.png
+     WE ./grass_block_side.png
 
-EA ./grass_block_side.png
+EA ./cage.png
 
 F 228,100,0             
 

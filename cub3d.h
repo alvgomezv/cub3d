@@ -81,11 +81,11 @@ typedef struct s_ray
 	int			iray;
 	int			wall_type;
 	mlx_image_t	*tex;
-	int			rect_w;
-	int			rect_h;
-	int			rect_x_off;
-	int			rect_tex_x_off;
-	int			prev_rect_tex_x_off;
+	float		rect_w;
+	float		rect_h;
+	float		rect_x_off;
+	float		rect_tex_x_off;
+	float		prev_rect_tex_x_off;
 }		t_ray;
 
 typedef struct s_map
