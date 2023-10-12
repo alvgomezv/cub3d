@@ -44,8 +44,6 @@ void	draw_minmap(t_map *map, t_pxl *tl_corner)
 		tl_corner->y += MM_C_SIZE + MM_C_SEP;
 	}
 	draw_player(map);
-	clean_img(map->cam);
-	raycaster(map);
 }
 
 void	draw_player(t_map *m)

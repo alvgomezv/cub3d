@@ -81,10 +81,11 @@ int	main(int argc, char **argv)
 		return (1);
 	tl_minmap.x = MM_TL_X;
 	tl_minmap.y = MM_TL_Y;
-	mlx_image_to_window(map->mlx, map->minmap, 0, 0);
+	mlx_image_to_window(map->mlx, map->minmap, MM_TL_X, MM_TL_X);
 	mlx_image_to_window(map->mlx, map->cam, map->max_cols
 			* (MM_C_SIZE + MM_C_SEP), 0);
 	draw_minmap(map, &tl_minmap);
+	draw_camera(map);
 	mlx_key_hook(map->mlx, &disc_hook, map);
 	mlx_loop_hook(map->mlx, cont_hook, map);
 	mlx_loop(map->mlx);

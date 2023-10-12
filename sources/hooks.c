@@ -30,6 +30,7 @@ void	cont_hook(void *param)
 	mm_tl_corner.y = MM_TL_Y;
 	apply_movement(map);
 	draw_minmap(map, &mm_tl_corner);
+	draw_camera(map);
 }
 
 void	disc_hook(mlx_key_data_t key, void *param)

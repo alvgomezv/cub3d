@@ -59,6 +59,25 @@ void	draw_square(mlx_image_t *img, t_pxl *tl_corner, int size, t_color *c)
 	}
 }
 
+void	draw_rect(mlx_image_t *img, t_pxl *tl_crn, t_pxl *br_crn, t_color *c)
+{
+	t_pxl	pxl;
+
+	pxl.color = c;
+	pxl.x = tl_crn->x;
+	pxl.y = tl_crn->y;
+	while (pxl.y < br_crn->y)
+	{
+		while (pxl.x < br_crn->x)
+		{
+			draw_pixel(img, &pxl);
+			pxl.x += 1;
+		}
+		pxl.x = tl_crn->x;
+		pxl.y += 1;
+	}
+}
+
 
 
 

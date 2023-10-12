@@ -23,6 +23,8 @@
 # define MM_C_SIZE 30
 # define MM_C_SEP 0
 
+# define VP_TL_X 0
+# define VP_TL_Y 0
 # define VP_W 800
 # define VP_H 450
 # define FOV 60
@@ -168,9 +170,10 @@ void	print_map_cells(t_map *map);
 // CHECK MAP
 int		is_map_closed(t_map *map);
 
-// DRAW MINIMAP
+// DRAW
 void	draw_minmap(t_map *map, t_pxl *tl_corner);
 void	draw_player(t_map *m);
+void	draw_camera(t_map *map);
 
 // DRAW UTILS
 void	draw_pixel(mlx_image_t *img, t_pxl *pxl);
@@ -178,6 +181,7 @@ void	draw_line(mlx_image_t *img, t_pxl *pxl1, t_pxl *pxl2, t_color *c);
 void	draw_square(mlx_image_t *img, t_pxl *tl_corner, int size, t_color *c);
 void	draw_wall_rect(t_map *map, t_ray *ray);
 void	clean_img(mlx_image_t *img);
+void	draw_rect(mlx_image_t *img, t_pxl *tl_crn, t_pxl *br_crn, t_color *c);
 
 // STRUCT UTILS
 t_color	*init_color(int r, int g, int b, int a);

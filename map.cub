@@ -2,12 +2,12 @@
 SO ./acacia_log.png
      WE ./grass_block_side.png
 
-EA ./cage.png
+EA ./birch_log.png
 
-F 228,100,0             
+F 100,100,100             
 
 
-C 225,30,0
+C 100,100,150
 
 		
 11111111111111111111111

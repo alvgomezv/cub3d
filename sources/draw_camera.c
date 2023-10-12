@@ -70,3 +70,19 @@ void	draw_wall_rect(t_map *map, t_ray *ray)
 	ray->prev_rect_tex_x_off = ray->rect_tex_x_off;
 }
 
+void	draw_camera(t_map *map)
+{
+	t_pxl	tl_crn;
+	t_pxl	br_crn;
+
+	tl_crn.x = 0;
+	tl_crn.y = 0;
+	br_crn.x = VP_W;
+	br_crn.y = VP_H / 2;
+	draw_rect(map->cam, &tl_crn, &br_crn, map->ceiling);
+	tl_crn.y = VP_H / 2;
+	br_crn.y = VP_H;
+	draw_rect(map->cam, &tl_crn, &br_crn, map->floor);
+	raycaster(map);
+}
+

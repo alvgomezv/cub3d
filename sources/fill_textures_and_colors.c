@@ -113,6 +113,6 @@ void	fill_color(t_color *color, char *number, t_map *map, char *line)
 	while (number[i] == ' ' || number[i] == '\t')
 		i++;
 	color->b = check_valid_color(map, number + i, line);
-	color->a = 0;
+	color->a = 255;
 	free(line);
 }
