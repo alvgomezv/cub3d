@@ -32,10 +32,12 @@
 # define FOV 60
 # define RAY_DEG 0.1
 
+# define P_W 10
+# define P_H 10
 # define P_COLOR 0x00FF00FF
 # define R_COLOR 0xFF00FFFF
-# define P_SQ 3
-# define P_LINE 3
+# define P_RADIUS 3
+# define P_LINE 5
 # define P_MOV 5
 # define P_ROT 0.05
 # define P_COL 10
@@ -111,6 +113,7 @@ typedef struct s_map
 	mlx_t			*mlx;
 	mlx_image_t		*cam;
 	mlx_image_t		*minmap;
+	mlx_image_t		*player_img;
 	mlx_image_t		*N_tex;
 	mlx_image_t		*S_tex;
 	mlx_image_t		*E_tex;
@@ -177,7 +180,7 @@ void	print_map_cells(t_map *map);
 int		is_map_closed(t_map *map);
 
 // DRAW
-void	draw_minmap(t_map *map, t_pxl *tl_corner);
+void	draw_minmap(t_map *map);
 void	draw_player(t_map *m);
 void	draw_camera(t_map *map);
 

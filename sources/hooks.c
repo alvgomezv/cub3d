@@ -17,7 +17,6 @@ void	apply_movement(t_map *map)
 		map->player->angle = normalize_angle(map->player->angle - P_ROT);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
 		map->player->angle = normalize_angle(map->player->angle + P_ROT);
-
 }
 
 void	cont_hook(void *param)
@@ -29,7 +28,7 @@ void	cont_hook(void *param)
 	mm_tl_corner.x = MM_TL_X;
 	mm_tl_corner.y = MM_TL_Y;
 	apply_movement(map);
-	draw_minmap(map, &mm_tl_corner);
+	draw_player(map);
 	draw_camera(map);
 }
 

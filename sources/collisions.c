@@ -58,8 +58,10 @@ void	move_if_no_collision(t_map *map, int key)
 		new_y = (double)map->player->y - floor((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
 	}
 	if (!circle_overlaps(map, new_x, new_y))
-	{ 
+	{
 		map->player->x = new_x;
 		map->player->y = new_y;
+		map->minmap->instances->x = MM_RADIUS - (map->player->x * MM_SCALE);
+		map->minmap->instances->y = MM_RADIUS - (map->player->y * MM_SCALE);
 	}
 }

@@ -77,18 +77,16 @@ void	horizontal_lines_depth_check(t_map *map, int depth)
 
 void	print_ray(t_map *map, int color)
 {
-	t_pxl	*pxl_player;
-	t_pxl	*pxl_ray;
+	t_pxl	pxl_player;
+	t_pxl	pxl_ray;
 
-	pxl_player = (t_pxl *)ft_calloc(1, sizeof(t_pxl));
-	pxl_player->x = map->player->x * MM_SCALE;
-	pxl_player->y = map->player->y * MM_SCALE;
-	pxl_player->color = int_to_color(color);
-	pxl_ray = (t_pxl *)ft_calloc(1, sizeof(t_pxl));
-	pxl_ray->x = map->ray->x * MM_SCALE;
-	pxl_ray->y = map->ray->y * MM_SCALE;
-	pxl_ray->color = int_to_color(color);
-	draw_line(map->minmap, pxl_player, pxl_ray, int_to_color(color));
+	pxl_player.x = map->player->x * MM_SCALE;
+	pxl_player.y = map->player->y * MM_SCALE;
+	pxl_player.color = int_to_color(color);
+	pxl_ray.x = map->ray->x * MM_SCALE;
+	pxl_ray.y = map->ray->y * MM_SCALE;
+	pxl_ray.color = pxl_player.color;
+	draw_line(map->player_img, &pxl_player, &pxl_ray, pxl_ray.color);
 }
 
 void	vertical_lines_ray_angle_check(t_map *map, int *depth, float ntan)
@@ -201,7 +199,7 @@ void	raycaster(t_map *map)
 		vertical_lines_depth_check(map, depth);
 		
 		choose_shortest_distance(map);
-		print_ray(map, 0xFF00FFFF);
+		// print_ray(map, 0xFF00FFFF);
 
 		// fix fish eye effect
 		map->ray->iangle = normalize_angle(map->player->angle) - normalize_angle(map->ray->angle);

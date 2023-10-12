@@ -86,7 +86,6 @@ int	load_textures(t_map *map)
 
 int	main(int argc, char **argv)
 {
-	t_pxl	tl_minmap;
 	t_map	*map;
 
 	map = initialize_map_data();
@@ -98,7 +97,6 @@ int	main(int argc, char **argv)
 	map->cam = mlx_new_image(map->mlx, VP_W, VP_H);
 	if (!map->cam)
 		return (1);
-	
 	if (load_textures(map))
 		return (1);
 	// get minmap img size
@@ -106,12 +104,17 @@ int	main(int argc, char **argv)
 			* SQ_SIZE * MM_SCALE, map->max_rows * SQ_SIZE * MM_SCALE);
 	if (!map->minmap)
 		return (1);
-	tl_minmap.x = MM_TL_X;
-	tl_minmap.y = MM_TL_Y;
-	mlx_image_to_window(map->mlx, map->minmap, MM_TL_X, MM_TL_X);
+	
+	map->player_img = mlx_new_image(map->mlx, P_W, P_H);
+	if (!map->player_img)
+		return (1);
+
+	mlx_image_to_window(map->mlx, map->minmap, MM_RADIUS - (map->player->x * MM_SCALE), MM_RADIUS - (map->player->y * MM_SCALE));
+	mlx_image_to_window(map->mlx, map->player_img, MM_RADIUS - P_W / 2, MM_RADIUS - P_H / 2);
 	mlx_image_to_window(map->mlx, map->cam, VP_TL_X, VP_TL_Y);
 
-	draw_minmap(map, &tl_minmap);
+	draw_minmap(map);
+	draw_player(map);
 	draw_camera(map);
 
 	mlx_key_hook(map->mlx, &disc_hook, map);

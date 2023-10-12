@@ -80,9 +80,7 @@ void	check_all_map_data(t_map *map)
 
 void	initialize_player(t_map *map, char direction, int i, int y)
 {
-	map->cells[y][i] = 3;
-	map->player->x = 0;
-	map->player->y = 0;
+	map->cells[y][i] = 0;
 	if (direction == 'N')
 		map->player->angle = -M_PI_2;
 	else if (direction == 'S')
@@ -93,8 +91,8 @@ void	initialize_player(t_map *map, char direction, int i, int y)
 		map->player->angle = 0;
 	map->player->start_col = i;
 	map->player->start_row = y;
-	map->player->x = (map->player->start_col - 1)
+	map->player->x = (map->player->start_col)
 		* (SQ_SIZE) + ((SQ_SIZE) / 2);
-	map->player->y = (map->player->start_row - 1)
+	map->player->y = (map->player->start_row)
 		* (SQ_SIZE) + ((SQ_SIZE) / 2);
 }
