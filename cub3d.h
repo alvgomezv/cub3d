@@ -37,6 +37,7 @@
 # define P_LINE 3
 # define P_MOV 5
 # define P_ROT 0.05
+# define P_COL 10
 
 typedef struct s_color
 {
@@ -86,8 +87,10 @@ typedef struct s_ray
 	mlx_image_t	*tex;
 	float		rect_w;
 	float		rect_h;
+	float		rect_h_prop;
 	float		rect_x_off;
 	float		rect_tex_x_off;
+	float		rect_tex_y_off;
 	float		prev_rect_tex_x_off;
 }		t_ray;
 

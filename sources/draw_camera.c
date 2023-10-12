@@ -7,6 +7,17 @@ void	get_ray_calcs(t_map *map, t_ray *ray)
 	float	pos;
 
 	ray->rect_h = ((VP_H * SQ_SIZE) / ray->dist);
+	if (ray->rect_h > VP_H)
+	{
+		ray->rect_h_prop = ray->rect_h / (float)VP_H;
+		ray->rect_tex_y_off = (ray->rect_h - (float)VP_H) / 2.0;
+		ray->rect_h = VP_H;
+	}
+	else
+	{
+		ray->rect_h_prop = 1;
+		ray->rect_tex_y_off = 0;
+	}
 	ray->rect_w = (VP_W / (FOV / RAY_DEG));
 	ray->rect_x_off = ((VP_W * (float)ray->iray) / (FOV / RAY_DEG));
 	if (ray->wall_type == N_wall)
@@ -32,7 +43,7 @@ void	get_tex_pxl_color(t_pxl *rect, t_ray *ray)
 		* (rect->x / ray->rect_w);
 	if (tex.x > (int)ray->tex->width)
 		tex.x = ray->tex->width;
-	tex.y = ((rect->y / ray->rect_h) * (float)ray->tex->height);
+	tex.y = (((ray->rect_tex_y_off + rect->y) / (ray->rect_h * ray->rect_h_prop)) * (float)ray->tex->height);
 	rect->color->r = ray->tex->pixels[(tex.y * ray->tex->width + tex.x) * 4];
 	rect->color->g = ray->tex->pixels[(tex.y * ray->tex->width + tex.x) * 4 + 1];
 	rect->color->b = ray->tex->pixels[(tex.y * ray->tex->width + tex.x) * 4 + 2];

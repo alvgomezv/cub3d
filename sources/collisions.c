@@ -24,8 +24,8 @@ int	circle_overlaps(t_map *map, int x_c, int y_c)
 	angle = 0;
 	while (angle < 360)
 	{
-		if (get_cell_type_for_pxl(map, x_c + P_LINE * cos(deg_rad(angle, 1)),
-				y_c + P_LINE * sin(deg_rad(angle, 1))) == wall)
+		if (get_cell_type_for_pxl(map, x_c + P_COL * cos(deg_rad(angle, 1)),
+				y_c + P_COL * sin(deg_rad(angle, 1))) == wall)
 			return (1);
 		angle += 1;
 	}
