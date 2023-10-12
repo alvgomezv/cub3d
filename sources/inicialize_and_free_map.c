@@ -37,7 +37,7 @@ t_map	*initialize_map_data(void)
 	map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (!map)
 	{
-		perror("Error allocating memory");
+		ft_printf_fd("Error allocating memory\n", 2);
 		exit (1);
 	}
 	map->player = (t_player *)ft_calloc(1, sizeof(t_player));
@@ -67,8 +67,14 @@ void	check_all_map_data(t_map *map)
 		|| map->ceiling->a == -1)
 	{
 		ft_free_map(map);
-		perror("Error, missing map data");
-		exit (1);
+		ft_printf_fd("Error, missing map data\n", 2);
+		exit(1);
+	}
+	if (!is_map_closed(map))
+	{
+		ft_free_map(map);
+		ft_printf_fd("Error, map not closed or surrounded by walls\n", 2);
+		exit(1);
 	}
 }
 

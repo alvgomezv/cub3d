@@ -43,7 +43,7 @@ char	*initial_checks(int argc, char *argv, t_map *map)
 		|| argv[ft_strlen(argv) - 4] != '.')
 	{
 		ft_free_map(map);
-		perror("Error, must include a map (.cub file)");
+		ft_printf_fd("Error, must include a map (.cub file)\n", 2);
 		exit (1);
 	}
 	return (argv);

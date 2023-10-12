@@ -79,7 +79,7 @@ void	cub_parsing(char *map_route, t_map *map)
 	if (fd == -1)
 	{
 		ft_free_map(map);
-		perror("Error opening file");
+		ft_printf_fd("Error opening file\n", 2);
 		exit (1);
 	}
 	count_lines_and_columns_of_the_map(map, fd);
