@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_camera.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 11:43:02 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/10/18 11:48:03 by alvgomez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
-
-
 
 void	get_ray_calcs(t_map *map, t_ray *ray)
 {
@@ -21,33 +31,40 @@ void	get_ray_calcs(t_map *map, t_ray *ray)
 	ray->rect_w = (VP_W / (FOV / RAY_DEG));
 	ray->rect_x_off = ((VP_W * (float)ray->iray) / (FOV / RAY_DEG));
 	if (ray->wall_type == N_wall)
-		ray->tex = map->N_tex;
+		ray->tex = map->n_tex;
 	else if (ray->wall_type == S_wall)
-		ray->tex = map->S_tex;
+		ray->tex = map->s_tex;
 	else if (ray->wall_type == E_wall)
-		ray->tex = map->E_tex;
+		ray->tex = map->e_tex;
 	else
-		ray->tex = map->W_tex;
+		ray->tex = map->w_tex;
 	if (ray->wall_type == N_wall || ray->wall_type == S_wall)
 		pos = ray->x;
 	else
 		pos = ray->y;
-	ray->rect_tex_x_off = (fmod(pos, SQ_SIZE) / (float)SQ_SIZE) * (float)ray->tex->width;
+	ray->rect_tex_x_off = (fmod(pos, SQ_SIZE)
+			/ (float)SQ_SIZE) * (float)ray->tex->width;
 }
 
 void	get_tex_pxl_color(t_pxl *rect, t_ray *ray)
 {
 	t_pxl	tex;
 
-	tex.x = floor(ray->rect_tex_x_off) + fabs(ray->rect_tex_x_off - ray->prev_rect_tex_x_off) \
+	tex.x = floor(ray->rect_tex_x_off)
+		+ fabs(ray->rect_tex_x_off - ray->prev_rect_tex_x_off) \
 		* (rect->x / ray->rect_w);
 	if (tex.x > (int)ray->tex->width)
 		tex.x = ray->tex->width;
-	tex.y = (((ray->rect_tex_y_off + rect->y) / (ray->rect_h * ray->rect_h_prop)) * (float)ray->tex->height);
-	rect->color->r = ray->tex->pixels[(tex.y * ray->tex->width + tex.x) * 4];
-	rect->color->g = ray->tex->pixels[(tex.y * ray->tex->width + tex.x) * 4 + 1];
-	rect->color->b = ray->tex->pixels[(tex.y * ray->tex->width + tex.x) * 4 + 2];
-	rect->color->a = ray->tex->pixels[(tex.y * ray->tex->width + tex.x) * 4 + 3];
+	tex.y = (((ray->rect_tex_y_off + rect->y)
+				/ (ray->rect_h * ray->rect_h_prop)) * (float)ray->tex->height);
+	rect->color->r = ray->tex->pixels[(tex.y
+			* ray->tex->width + tex.x) * 4];
+	rect->color->g = ray->tex->pixels[(tex.y
+			* ray->tex->width + tex.x) * 4 + 1];
+	rect->color->b = ray->tex->pixels[(tex.y
+			* ray->tex->width + tex.x) * 4 + 2];
+	rect->color->a = ray->tex->pixels[(tex.y
+			* ray->tex->width + tex.x) * 4 + 3];
 }
 
 void	set_rect_offset(t_pxl *rect, t_pxl *rect_offset, t_ray *ray)
@@ -102,4 +119,3 @@ void	draw_camera(t_map *map)
 	draw_circle(map->cam, &mm_center, MM_RADIUS, mm_center.color);
 	free(mm_center.color);
 }
-

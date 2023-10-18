@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_textures_and_colors.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 11:45:31 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/10/18 12:42:26 by alvgomez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 char	*fill_texture(char *word, t_map *map, char *line)
@@ -10,19 +22,17 @@ char	*fill_texture(char *word, t_map *map, char *line)
 	texture = ft_strtrim(tmp, " ");
 	free(tmp);
 	fd = open(texture, O_RDONLY);
-	// if ((texture[ft_strlen(texture) - 1] != 'm'
-	// 		|| texture[ft_strlen(texture) - 2] != 'p'
-	// 		|| texture[ft_strlen(texture) - 3] != 'x'
-	// 		|| texture[ft_strlen(texture) - 4] != '.')
-	// 	|| fd == -1)
-	// {
-	// 	free(line);
-	// 	free(texture);
-	// 	ft_free_map(map);
-	// 	perror("Error opening texture file");
-	// 	exit (1);
-	// }
-	(void)map;
+	if ((texture[ft_strlen(texture) - 1] != 'g'
+			|| texture[ft_strlen(texture) - 2] != 'n'
+			|| texture[ft_strlen(texture) - 3] != 'p'
+			|| texture[ft_strlen(texture) - 4] != '.')
+		|| fd == -1 || (line[0] == 'N' && map->no_texture) || (line[0] == 'S'
+			&& map->so_texture) || (line[0] == 'W' && map->we_texture)
+		|| (line[0] == 'E' && map->ea_texture))
+	{
+		free(texture);
+		ft_error_and_free_map(map, "Error, texture file must be png", line);
+	}
 	close(fd);
 	free(line);
 	return (texture);

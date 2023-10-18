@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 11:47:24 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/10/18 11:47:27 by alvgomez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -68,21 +79,20 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	float	x;
-	float	y;
-	float	x_offset;
-	float	y_offset;
-	int		map_x;
-	int		map_y;
-	int		map_pos;
-	float	h_x;
-	float	h_y;
-	float	h_dist;
-	float	v_x;
-	float	v_y;
-	float	v_dist;
-	float	angle;
-
+	float		x;
+	float		y;
+	float		x_offset;
+	float		y_offset;
+	int			map_x;
+	int			map_y;
+	int			map_pos;
+	float		h_x;
+	float		h_y;
+	float		h_dist;
+	float		v_x;
+	float		v_y;
+	float		v_dist;
+	float		angle;
 	float		iangle;
 	float		dist;
 	int			iray;
@@ -114,10 +124,10 @@ typedef struct s_map
 	mlx_image_t		*cam;
 	mlx_image_t		*minmap;
 	mlx_image_t		*player_img;
-	mlx_image_t		*N_tex;
-	mlx_image_t		*S_tex;
-	mlx_image_t		*E_tex;
-	mlx_image_t		*W_tex;
+	mlx_image_t		*n_tex;
+	mlx_image_t		*s_tex;
+	mlx_image_t		*e_tex;
+	mlx_image_t		*w_tex;
 	mlx_texture_t	*texture;
 	int				check;
 	int				empty_line;
@@ -147,6 +157,7 @@ float	normalize_angle(float angle);
 // Check errors
 char	*initial_checks(int argc, char *argv, t_map *map);
 void	check_cells_for_errors(char *line, t_map *map);
+void	ft_error_and_free_all(t_map *map, char *error);
 void	ft_error_and_free_map(t_map *map, char *error, char *line);
 
 // Clean cells
@@ -172,6 +183,14 @@ void	cub_parsing(char *map_route, t_map *map);
 
 // Raycasting
 void	raycaster(t_map *map);
+float	distance_between_points(float x1, float y1, float x2, float y2);
+
+void	horizontal_lines_depth_check(t_map *map, int depth);
+void	horizontal_lines_ray_angle_check(t_map *map, int *depth, float a_tan);
+void	keep_variables_inside_map(t_map *map);
+
+void	vertical_lines_depth_check(t_map *map, int depth);
+void	vertical_lines_ray_angle_check(t_map *map, int *depth, float ntan);
 
 // Main
 void	print_map_cells(t_map *map);

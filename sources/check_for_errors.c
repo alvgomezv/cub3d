@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_for_errors.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 11:42:13 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/10/18 11:42:16 by alvgomez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	check_cells_for_errors(char *line, t_map *map)
@@ -30,6 +42,14 @@ void	check_cells_for_errors(char *line, t_map *map)
 void	ft_error_and_free_map(t_map *map, char *error, char *line)
 {
 	free(line);
+	ft_free_map(map);
+	perror(error);
+	exit (1);
+}
+
+void	ft_error_and_free_all(t_map *map, char *error)
+{
+	ft_free_cells(map);
 	ft_free_map(map);
 	perror(error);
 	exit (1);

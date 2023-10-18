@@ -1,4 +1,16 @@
-# include "../cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 11:44:47 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/10/18 11:47:52 by alvgomez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3d.h"
 
 void	draw_pixel(mlx_image_t *img, t_pxl *pxl)
 {
@@ -91,7 +103,8 @@ void	draw_circle(mlx_image_t *img, t_pxl *center, int size, t_color *c)
 	{
 		while (++offset.y < size)
 		{
-			calc = (int) sqrt((double)(offset.x * offset.x + offset.y * offset.y));
+			calc = (int) sqrt((double)(offset.x * offset.x
+						+ offset.y * offset.y));
 			if (calc < size)
 			{
 				pxl.x = center->x + offset.x;
@@ -102,5 +115,3 @@ void	draw_circle(mlx_image_t *img, t_pxl *center, int size, t_color *c)
 		offset.y = -size;
 	}
 }
-
-

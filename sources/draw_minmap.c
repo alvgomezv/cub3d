@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_minmap.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 11:44:37 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/10/18 11:44:38 by alvgomez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	choose_square_to_draw(t_map *map, t_pxl *tl_corner, int irow, int icol)
@@ -57,10 +69,8 @@ void	draw_player(t_map *m)
 	player_center.y = P_H / 2;
 	player_center.color = int_to_color(P_COLOR);
 	draw_circle(m->player_img, &player_center, P_RADIUS, player_center.color);
-
 	line_pxl2.x = player_center.x + P_LINE * cos(m->player->angle);
 	line_pxl2.y = player_center.y + P_LINE * sin(m->player->angle);
 	draw_line(m->player_img, &player_center, &line_pxl2, player_center.color);
-	// printf("player x: %d, player y: %d angle: %f \n", m->player->x, m->player->y, m->player->angle);
 	free(player_center.color);
 }

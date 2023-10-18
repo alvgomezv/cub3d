@@ -1,4 +1,16 @@
-# include "../cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_structs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 11:45:58 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/10/18 11:46:37 by alvgomez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3d.h"
 
 t_color	*init_color(int r, int g, int b, int a)
 {
@@ -30,5 +42,4 @@ void	free_pxl(void *pxl_ptr)
 	pxl = (t_pxl *) pxl_ptr;
 	free(pxl->color);
 	free(pxl);
-
 }
