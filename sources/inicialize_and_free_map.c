@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:55 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 16:44:35 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:36:20 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ void	initialize_player(t_map *map, char direction, int i, int y)
 {
 	map->cells[y][i] = 0;
 	if (direction == 'N')
-		map->player->angle = -M_PI_2;
+		map->player->angle = normalize_angle(-M_PI_2);
 	else if (direction == 'S')
-		map->player->angle = -M_PI_2 * 3;
+		map->player->angle = normalize_angle(-M_PI_2 * 3);
 	else if (direction == 'W')
-		map->player->angle = M_PI;
+		map->player->angle = normalize_angle(M_PI);
 	else if (direction == 'E')
 		map->player->angle = 0;
 	map->player->start_col = i;
