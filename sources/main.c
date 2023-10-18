@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:04 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 12:10:43 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:45:07 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,19 @@ void	load_mlxs(t_map	*map)
 {
 	map->mlx = mlx_init(VP_W, VP_H, "Cub3d", 1);
 	if (!map->mlx)
-		ft_error_and_free_all(map, "Error, mlx failed to initialize");
+		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
 	map->cam = mlx_new_image(map->mlx, VP_W, VP_H);
 	if (!map->cam)
-		ft_error_and_free_all(map, "Error, mlx failed to initialize");
+		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
 	if (load_textures(map))
-		ft_error_and_free_all(map, "Error, mlx failed to initialize");
+		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
 	map->minmap = mlx_new_image(map->mlx, map->max_cols
 			* SQ_SIZE * MM_SCALE, map->max_rows * SQ_SIZE * MM_SCALE);
 	if (!map->minmap)
-		ft_error_and_free_all(map, "Error, mlx failed to initialize");
+		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
 	map->player_img = mlx_new_image(map->mlx, P_W, P_H);
 	if (!map->player_img)
-		ft_error_and_free_all(map, "Error, mlx failed to initialize");
+		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
 	mlx_image_to_window(map->mlx, map->minmap, MM_RADIUS
 		- (map->player->x * MM_SCALE), MM_RADIUS - (map->player->y * MM_SCALE));
 	mlx_image_to_window(map->mlx, map->player_img,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_cells_from_cub.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:23 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:45:24 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:41:06 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	fill_cells_in_map(char *line, int *cells, t_map *map, int y)
 		else
 		{
 			ft_free_cells(map);
-			ft_error_and_free_map(map, "Error, invalid map data 55", line);
+			ft_error_and_free_map(map, "Error\nInvalid map data 55", line);
 		}
 		i++;
 	}

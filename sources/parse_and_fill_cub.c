@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_and_fill_cub.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:10 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 12:37:01 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:45:44 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	fill_map_data(char *line, t_map *map, int fd)
 	else if (line[i] == '1')
 		fill_cells(line, map, fd);
 	else if (line[i] != '\n')
-		ft_error_and_free_map(map, "Error, invalid map data", line);
+		ft_error_and_free_map(map, "Error\nInvalid map data", line);
 	else
 		free(line);
 }
@@ -58,7 +58,7 @@ static void	aux_count_lines_and_columns_of_the_map(char *line,
 		line = new_line;
 	}
 	if (map->check == 0)
-		ft_error_and_free_map(map, "Error, invalid map data", line);
+		ft_error_and_free_map(map, "Error\nInvalid map data", line);
 }
 
 static void	count_lines_and_columns_of_the_map(t_map *map, int fd)
@@ -91,7 +91,7 @@ void	cub_parsing(char *map_route, t_map *map)
 	if (fd == -1)
 	{
 		ft_free_map(map);
-		ft_printf_fd("Error opening file\n", 2);
+		ft_printf_fd("Error\nFailed opening file\n", 2);
 		exit (1);
 	}
 	count_lines_and_columns_of_the_map(map, fd);
