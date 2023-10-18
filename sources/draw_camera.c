@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:43:02 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:48:03 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:11:56 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	get_tex_pxl_color(t_pxl *rect, t_ray *ray)
 		* (rect->x / ray->rect_w);
 	if (tex.x > (int)ray->tex->width)
 		tex.x = ray->tex->width;
+	if (ray->wall_type == W_wall || ray->wall_type == S_wall)
+		tex.x = (ray->tex->width - tex.x);
 	tex.y = (((ray->rect_tex_y_off + rect->y)
 				/ (ray->rect_h * ray->rect_h_prop)) * (float)ray->tex->height);
 	rect->color->r = ray->tex->pixels[(tex.y
