@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:44:37 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:44:38 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:10:14 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ void	choose_square_to_draw(t_map *map, t_pxl *tl_corner, int irow, int icol)
 		color = int_to_color(MM_EMPTY_COLOR);
 	else if (map->cells[irow][icol] == wall)
 		color = int_to_color(MM_WALL_COLOR);
-	if (map->cells[irow][icol] != outside)
-	{
-		draw_square(map->minmap, tl_corner, SQ_SIZE, color);
-		// free(tl_corner->color);
-	}
+	else
+		color = int_to_color(0);
+	draw_square(map->minmap, tl_corner, SQ_SIZE, color);
+	free(tl_corner->color);
 }
 
 void	clean_img(mlx_image_t *img)
