@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:47:24 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 17:44:22 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:35:25 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define VP_H 1000.0
 # define VP_TL_X 0.0
 # define VP_TL_Y 0.0
-# define FOV 75.0
-# define RAY_DEG 0.05
+# define FOV 60.0
+# define RAY_DEG 0.04
 
 # define P_W 10.0
 # define P_H 10.0

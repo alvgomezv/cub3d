@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:20 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 17:44:46 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:33:40 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	raycaster(t_map *map)
 		choose_shortest_distance(map);
 		map->ray->iangle = normalize_angle(map->player->angle)
 			- normalize_angle(map->ray->angle);
-		map->ray->dist *= cos(map->ray->iangle);
+		map->ray->dist *= pow(cos(map->ray->iangle), 1);
 		map->ray->iray = num_rays;
 		draw_wall_rect(map, map->ray);
 		num_rays++;
