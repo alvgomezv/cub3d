@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:43:02 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 18:02:57 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:06:21 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@ void	get_ray_calcs(t_map *map, t_ray *ray)
 	float	pos;
 
 	ray->rect_h = ((VP_H * SQ_SIZE) / ray->dist);
+	ray->rect_h_prop = 1;
+	ray->rect_tex_y_off = 0;
 	if (ray->rect_h > VP_H)
 	{
 		ray->rect_h_prop = ray->rect_h / (float)VP_H;
 		ray->rect_tex_y_off = (ray->rect_h - VP_H) / 2.0;
 		ray->rect_h = VP_H;
 	}
-	else
-	{
-		ray->rect_h_prop = 1;
-		ray->rect_tex_y_off = 0;
-	}
 	ray->rect_w = (VP_W / (FOV / RAY_DEG));
 	ray->rect_x_off = floor(ray->rect_w * ray->iray);
+	if (ray->wall_type == N_wall || ray->wall_type == S_wall)
+		pos = ray->x;
+	else
+		pos = ray->y;
+	ray->rect_tex_x_off = (fmod(pos, SQ_SIZE) / SQ_SIZE) * ray->tex->width;
+}
+
+void	get_wall_texture(t_map *map, t_ray *ray)
+{
 	if (ray->wall_type == N_wall)
 		ray->tex = map->n_tex;
 	else if (ray->wall_type == S_wall)
@@ -38,11 +44,6 @@ void	get_ray_calcs(t_map *map, t_ray *ray)
 		ray->tex = map->e_tex;
 	else
 		ray->tex = map->w_tex;
-	if (ray->wall_type == N_wall || ray->wall_type == S_wall)
-		pos = ray->x;
-	else
-		pos = ray->y;
-	ray->rect_tex_x_off = (fmod(pos, SQ_SIZE) / SQ_SIZE) * ray->tex->width;
 }
 
 void	get_tex_pxl_color(t_pxl *rect, t_ray *ray)
@@ -70,6 +71,7 @@ void	draw_wall_rect(t_map *map, t_ray *ray)
 	t_pxl	rect_offset;
 
 	get_ray_calcs(map, ray);
+	get_wall_texture(map, ray);
 	rect.x = 0;
 	rect.y = 0;
 	rect.color = init_color(0, 0, 0, 0);
