@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:20 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:46:21 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:44:46 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	raycaster(t_map *map)
 	num_rays = 0;
 	map->ray = (t_ray *)ft_calloc(1, sizeof(t_ray));
 	map->ray->angle = normalize_angle(map->player->angle - DR * FOV / 2);
-	map->ray->prev_rect_tex_x_off = 0;
 	while (num_rays < FOV / RAY_DEG)
 	{
 		check_horizontal_and_vertical_lines(map);

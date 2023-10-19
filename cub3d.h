@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:47:24 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 16:16:50 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:44:22 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 
 # define DR 0.0174533
 
-# define WIN_WIDTH 1920.0
-# define WIN_HEIGTH 1080.0
-
 # define SQ_SIZE 50.0
 
 # define MM_EMPTY_COLOR 0x000000FF
@@ -41,7 +38,7 @@
 # define VP_TL_X 0.0
 # define VP_TL_Y 0.0
 # define FOV 75.0
-# define RAY_DEG 2
+# define RAY_DEG 0.05
 
 # define P_W 10.0
 # define P_H 10.0
@@ -100,11 +97,12 @@ typedef struct s_ray
 	mlx_image_t	*tex;
 	float		rect_w;
 	float		rect_h;
+	int			rect_w_int;
+	int			rect_h_int;
 	float		rect_h_prop;
-	float		rect_x_off;
-	float		rect_tex_x_off;
+	int			rect_x_off;
+	int			rect_tex_x_off;
 	float		rect_tex_y_off;
-	float		prev_rect_tex_x_off;
 }		t_ray;
 
 typedef struct s_map
