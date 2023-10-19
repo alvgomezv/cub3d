@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:43:02 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 17:43:51 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:02:57 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,22 @@ void	get_ray_calcs(t_map *map, t_ray *ray)
 		pos = ray->x;
 	else
 		pos = ray->y;
-	ray->rect_tex_x_off = floor((fmod(pos, SQ_SIZE) / SQ_SIZE) * ray->tex->width);
+	ray->rect_tex_x_off = (fmod(pos, SQ_SIZE) / SQ_SIZE) * ray->tex->width;
 }
 
 void	get_tex_pxl_color(t_pxl *rect, t_ray *ray)
 {
 	int	y;
+	int	x;
 	int	tex_idx;
 
+	x = ray->rect_tex_x_off;
 	y = (((ray->rect_tex_y_off + rect->y)
 				/ (ray->rect_h * ray->rect_h_prop))
 			* (ray->tex->height - 1));
-	tex_idx = (y * ray->tex->width + ray->rect_tex_x_off) * 4;
-	// if (ray->wall_type == W_wall || ray->wall_type == S_wall)
-	// 	tex.x = (ray->tex->width - tex.x); 
+	if (ray->wall_type == W_wall || ray->wall_type == S_wall)
+		x = (ray->tex->width - ray->rect_tex_x_off);
+	tex_idx = (y * ray->tex->width + x) * 4;
 	rect->color->r = ray->tex->pixels[tex_idx];
 	rect->color->g = ray->tex->pixels[tex_idx + 1];
 	rect->color->b = ray->tex->pixels[tex_idx + 2];
