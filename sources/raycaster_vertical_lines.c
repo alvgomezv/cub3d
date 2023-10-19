@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_vertical_lines.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:16 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:46:17 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:03:34 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	vertical_lines_ray_angle_check(t_map *map, int *depth, float ntan)
 	}
 	else if (map->ray->angle > M_PI_2 && map->ray->angle < M_PI_2 * 3)
 	{
-		map->ray->x = (map->player->x / SQ_SIZE) * SQ_SIZE - 0.0001;
+		map->ray->x = (map->player->x / (int)SQ_SIZE) * SQ_SIZE - 0.0001;
 		map->ray->y = (map->player->x - map->ray->x) * ntan + map->player->y;
 		map->ray->x_offset = -SQ_SIZE;
 		map->ray->y_offset = -map->ray->x_offset * ntan;
 	}
 	else if (map->ray->angle < M_PI_2 || map->ray->angle > M_PI_2 * 3)
 	{
-		map->ray->x = (map->player->x / SQ_SIZE) * SQ_SIZE + SQ_SIZE;
+		map->ray->x = (map->player->x / (int)SQ_SIZE) * SQ_SIZE + SQ_SIZE;
 		map->ray->y = (map->player->x - map->ray->x) * ntan + map->player->y;
 		map->ray->x_offset = SQ_SIZE;
 		map->ray->y_offset = -map->ray->x_offset * ntan;
