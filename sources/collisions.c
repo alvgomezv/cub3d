@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:42:48 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:42:49 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:18:41 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	move_if_no_collision(t_map *map, int key)
 	}
 	else if (key == MLX_KEY_D)
 	{
-		new_x = (double)map->player->x + floor((double)P_MOV * cos(normalize_angle(map->player->angle + M_PI_2)));
-		new_y = (double)map->player->y + floor((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
+		new_x = (double)map->player->x + ceil((double)P_MOV * cos(normalize_angle(map->player->angle + M_PI_2)));
+		new_y = (double)map->player->y + ceil((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
 	}
 	else
 	{
-		new_x = (double)map->player->x - floor((double)P_MOV * cos(normalize_angle(map->player->angle + M_PI_2)));
-		new_y = (double)map->player->y - floor((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
+		new_x = (double)map->player->x - ceil((double)P_MOV * cos(normalize_angle(map->player->angle + M_PI_2)));
+		new_y = (double)map->player->y - ceil((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
 	}
 	if (!circle_overlaps(map, new_x, new_y))
 	{

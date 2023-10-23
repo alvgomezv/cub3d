@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:47:24 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:47:27 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:35:25 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,31 @@
 
 # define DR 0.0174533
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGTH 1080
-
-# define SQ_SIZE 50
+# define SQ_SIZE 50.0
 
 # define MM_EMPTY_COLOR 0x000000FF
 # define MM_WALL_COLOR 0xFFFFFFFF
-# define MM_TL_X 0
-# define MM_TL_Y 0
+# define MM_TL_X 0.0
+# define MM_TL_Y 0.0
 # define MM_SCALE 0.2
-# define MM_RADIUS 100
+# define MM_RADIUS 100.0
 
-# define VP_W 1500
-# define VP_H 1000
-# define VP_TL_X 0
-# define VP_TL_Y 0
-# define FOV 60
-# define RAY_DEG 0.1
+# define VP_W 1500.0
+# define VP_H 1000.0
+# define VP_TL_X 0.0
+# define VP_TL_Y 0.0
+# define FOV 60.0
+# define RAY_DEG 0.04
 
-# define P_W 10
-# define P_H 10
+# define P_W 10.0
+# define P_H 10.0
 # define P_COLOR 0x00FF00FF
 # define R_COLOR 0xFF00FFFF
-# define P_RADIUS 3
-# define P_LINE 5
-# define P_MOV 5
+# define P_RADIUS 3.0
+# define P_LINE 5.0
+# define P_MOV 5.0
 # define P_ROT 0.05
-# define P_COL 10
+# define P_COL 10.0
 
 typedef struct s_color
 {
@@ -100,11 +97,12 @@ typedef struct s_ray
 	mlx_image_t	*tex;
 	float		rect_w;
 	float		rect_h;
+	int			rect_w_int;
+	int			rect_h_int;
 	float		rect_h_prop;
-	float		rect_x_off;
-	float		rect_tex_x_off;
+	int			rect_x_off;
+	int			rect_tex_x_off;
 	float		rect_tex_y_off;
-	float		prev_rect_tex_x_off;
 }		t_ray;
 
 typedef struct s_map

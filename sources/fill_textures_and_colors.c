@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_textures_and_colors.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:31 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 12:42:26 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:43:11 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*fill_texture(char *word, t_map *map, char *line)
 		|| (line[0] == 'E' && map->ea_texture))
 	{
 		free(texture);
-		ft_error_and_free_map(map, "Error, texture file must be png", line);
+		ft_error_and_free_map(map, "Error\nTexture file must be png", line);
 	}
 	close(fd);
 	free(line);
@@ -46,7 +46,7 @@ int	check_before_number(char *number, t_map *map, char *line)
 	while (number[i] < '0' || number[i] > '9')
 	{
 		if (number[i] < '0' || number[i] > '9')
-			ft_error_and_free_map(map, "Error, color must be a number", line);
+			ft_error_and_free_map(map, "Error\nColor must be a number", line);
 		i++;
 	}
 	return (i);
@@ -61,20 +61,20 @@ static int	check_valid_color_comma(t_map *map, char *number, char *line)
 	while (number[i] != ' ' && number[i] != '\t' && number[i] != ',')
 	{
 		if (number[i] < '0' || number[i] > '9')
-			ft_error_and_free_map(map, "Error, color must be a number", line);
+			ft_error_and_free_map(map, "Error\nColor must be a number", line);
 		i++;
 	}
 	while (number[i] != ',')
 	{
 		if (!number[i] || (number[i] != ' ' && line[i] != '\t'))
 			ft_error_and_free_map(map,
-				"Error, colors must be separated by a comma", line);
+				"Error\nColors must be separated by a comma", line);
 		i++;
 	}
 	color = ft_atoi(number);
 	if (color < 0 || color > 255)
 		ft_error_and_free_map(map,
-			"Error, color must be between 0 and 255", line);
+			"Error\nColor must be between 0 and 255", line);
 	return (color);
 }
 
@@ -87,19 +87,19 @@ static int	check_valid_color(t_map *map, char *number, char *line)
 	while (number[i] != ' ' && number[i] != '\t' && number[i] != '\n')
 	{
 		if (number[i] < '0' || number[i] > '9')
-			ft_error_and_free_map(map, "Error, color must be a number", line);
+			ft_error_and_free_map(map, "Error\nColor must be a number", line);
 		i++;
 	}
 	color = ft_atoi(number);
 	while (number[i] != '\n')
 	{
 		if (number[i] != ' ' && number[i] != '\t')
-			ft_error_and_free_map(map, "Error, color must be a number", line);
+			ft_error_and_free_map(map, "Error\nColor must be a number", line);
 		i++;
 	}
 	if (color < 0 || color > 255)
 		ft_error_and_free_map(map,
-			"Error, color must be between 0 and 255", line);
+			"Error\nColor must be between 0 and 255", line);
 	return (color);
 }
 

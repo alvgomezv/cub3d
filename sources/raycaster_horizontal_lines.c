@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_horizontal_lines.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:46:14 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:03:30 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	horizontal_lines_ray_angle_check(t_map *map, int *depth, float a_tan)
 	}
 	else if (map->ray->angle > M_PI)
 	{
-		map->ray->y = (map->player->y / SQ_SIZE) * SQ_SIZE - 0.0001;
+		map->ray->y = (map->player->y / (int)SQ_SIZE) * SQ_SIZE - 0.0001;
 		map->ray->x = (map->player->y - map->ray->y) * a_tan + map->player->x;
 		map->ray->y_offset = -SQ_SIZE;
 		map->ray->x_offset = -map->ray->y_offset * a_tan;
 	}
 	else if (map->ray->angle < M_PI)
 	{
-		map->ray->y = (map->player->y / SQ_SIZE) * SQ_SIZE + SQ_SIZE;
+		map->ray->y = (map->player->y / (int)SQ_SIZE) * SQ_SIZE + SQ_SIZE;
 		map->ray->x = (map->player->y - map->ray->y) * a_tan + map->player->x;
 		map->ray->y_offset = SQ_SIZE;
 		map->ray->x_offset = -map->ray->y_offset * a_tan;

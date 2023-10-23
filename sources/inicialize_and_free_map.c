@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inicialize_and_free_map.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:55 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:45:56 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:36:20 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_map	*initialize_map_data(void)
 	map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (!map)
 	{
-		ft_printf_fd("Error allocating memory\n", 2);
+		ft_printf_fd("Error\nFailed memory allocation\n", 2);
 		exit (1);
 	}
 	map->player = (t_player *)ft_calloc(1, sizeof(t_player));
@@ -79,13 +79,13 @@ void	check_all_map_data(t_map *map)
 		|| map->ceiling->a == -1)
 	{
 		ft_free_map(map);
-		ft_printf_fd("Error, missing map data\n", 2);
+		ft_printf_fd("Error\nMissing map data\n", 2);
 		exit(1);
 	}
 	if (!is_map_closed(map))
 	{
 		ft_free_map(map);
-		ft_printf_fd("Error, map not closed or surrounded by walls\n", 2);
+		ft_printf_fd("Error\nMap not closed or surrounded by walls\n", 2);
 		exit(1);
 	}
 }
@@ -94,11 +94,11 @@ void	initialize_player(t_map *map, char direction, int i, int y)
 {
 	map->cells[y][i] = 0;
 	if (direction == 'N')
-		map->player->angle = -M_PI_2;
+		map->player->angle = normalize_angle(-M_PI_2);
 	else if (direction == 'S')
-		map->player->angle = -M_PI_2 * 3;
+		map->player->angle = normalize_angle(-M_PI_2 * 3);
 	else if (direction == 'W')
-		map->player->angle = M_PI;
+		map->player->angle = normalize_angle(M_PI);
 	else if (direction == 'E')
 		map->player->angle = 0;
 	map->player->start_col = i;
