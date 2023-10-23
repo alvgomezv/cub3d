@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_horizontal_lines.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 16:03:30 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:31:47 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	keep_variables_inside_map(t_map *map)
 
 void	horizontal_lines_ray_angle_check(t_map *map, int *depth, float a_tan)
 {
+	map->ray->h_dist = 10000;
 	if (map->ray->angle == 0 || map->ray->angle == (float)M_PI)
 	{
 		map->ray->y = map->player->y;
 		map->ray->x = map->player->x;
 		map->ray->h_y = 10000;
 		map->ray->h_x = 10000;
-		map->ray->h_dist = 10000;
 		*depth = 30;
 	}
 	else if (map->ray->angle > M_PI)
