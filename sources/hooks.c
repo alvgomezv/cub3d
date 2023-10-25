@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:41 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 11:45:44 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:51:50 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	disc_hook(mlx_key_data_t key, void *param)
 	map = (t_map *) param;
 	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
 	{
-		// Clean everything
 		mlx_close_window(map->mlx);
 	}
 }
