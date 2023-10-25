@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:42:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 16:40:50 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:57:00 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_error_and_free_map(t_map *map, char *error, char *line)
 {
 	free(line);
 	ft_free_map(map);
-	perror(error);
+	ft_printf_fd("Error\n%s\n", 2, error);
 	exit (1);
 }
 
@@ -51,7 +51,7 @@ void	ft_error_and_free_all(t_map *map, char *error)
 {
 	ft_free_cells(map);
 	ft_free_map(map);
-	perror(error);
+	ft_printf_fd("Error\n%s\n", 2, error);
 	exit (1);
 }
 
