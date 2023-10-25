@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:42:48 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 19:18:41 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:35:09 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,43 @@ int	circle_overlaps(t_map *map, int x_c, int y_c)
 	return (0);
 }
 
+void	find_new_pos(t_map *map, int key, int *new_x, int *new_y)
+{
+	float	mov_x;
+	float	mov_y;
+
+	if (key == MLX_KEY_W)
+	{
+		mov_x = (P_MOV * cos(map->player->angle));
+		mov_y = (P_MOV * sin(map->player->angle));
+	}
+	else if (key == MLX_KEY_S)
+	{
+		mov_x = -(P_MOV * cos(map->player->angle));
+		mov_y = -(P_MOV * sin(map->player->angle));
+	}
+	else if (key == MLX_KEY_D)
+	{
+		mov_x = (P_MOV * -sin(map->player->angle));
+		mov_y = (P_MOV * cos(map->player->angle));
+	}
+	else
+	{
+		mov_x = -(P_MOV * -sin(map->player->angle));
+		mov_y = -(P_MOV * cos(map->player->angle));
+	}
+	*new_x = map->player->x + roundf(mov_x);
+	*new_y = map->player->y + roundf(mov_y);
+}
+
 void	move_if_no_collision(t_map *map, int key)
 {
 	int	new_x;
 	int	new_y;
 
-	if (key == MLX_KEY_W)
-	{
-		new_x = (double)map->player->x + floor((double)P_MOV * cos(map->player->angle));
-		new_y = (double)map->player->y + floor((double)P_MOV * sin(map->player->angle));
-	}
-	else if (key == MLX_KEY_S)
-	{
-		new_x = (double)map->player->x - floor((double)P_MOV * cos(map->player->angle));
-		new_y = (double)map->player->y - floor((double)P_MOV * sin(map->player->angle));
-	}
-	else if (key == MLX_KEY_D)
-	{
-		new_x = (double)map->player->x + ceil((double)P_MOV * cos(normalize_angle(map->player->angle + M_PI_2)));
-		new_y = (double)map->player->y + ceil((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
-	}
-	else
-	{
-		new_x = (double)map->player->x - ceil((double)P_MOV * cos(normalize_angle(map->player->angle + M_PI_2)));
-		new_y = (double)map->player->y - ceil((double)P_MOV * sin(normalize_angle(map->player->angle + M_PI_2)));
-	}
+	new_x = 0;
+	new_y = 0;
+	find_new_pos(map, key, &new_x, &new_y);
 	if (!circle_overlaps(map, new_x, new_y))
 	{
 		map->player->x = new_x;
