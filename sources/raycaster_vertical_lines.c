@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_vertical_lines.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:16 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 16:03:34 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:31:37 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	vertical_lines_ray_angle_check(t_map *map, int *depth, float ntan)
 {
+	map->ray->v_dist = 10000;
 	if (map->ray->angle == (float)M_PI_2
 		|| map->ray->angle == (float)(M_PI_2 * 3))
 	{
@@ -21,7 +22,6 @@ void	vertical_lines_ray_angle_check(t_map *map, int *depth, float ntan)
 		map->ray->x = map->player->x;
 		map->ray->v_y = 10000;
 		map->ray->v_x = 10000;
-		map->ray->v_dist = 10000;
 		*depth = 30;
 	}
 	else if (map->ray->angle > M_PI_2 && map->ray->angle < M_PI_2 * 3)
