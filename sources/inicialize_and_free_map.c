@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inicialize_and_free_map.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:55 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 18:36:20 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:01:08 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ void	ft_free_map(t_map *map)
 	free(map);
 }
 
-void	ft_free_cells(t_map *map)
+void	ft_free_cells(t_map *map, int rows)
 {
 	int	i;
 
 	i = 0;
-	while (i < map->max_rows)
+	while (i < rows)
 	{
-		if (map->cells[i])
-			free(map->cells[i]);
+		//if (map->cells[i])
+		free(map->cells[i]);
 		i++;
 	}
 	free(map->cells);
@@ -78,12 +78,14 @@ void	check_all_map_data(t_map *map)
 		|| map->ceiling->g == -1 || map->ceiling->b == -1
 		|| map->ceiling->a == -1)
 	{
+		ft_free_cells(map, map->max_rows);
 		ft_free_map(map);
 		ft_printf_fd("Error\nMissing map data\n", 2);
 		exit(1);
 	}
 	if (!is_map_closed(map))
 	{
+		ft_free_cells(map, map->max_rows);
 		ft_free_map(map);
 		ft_printf_fd("Error\nMap not closed or surrounded by walls\n", 2);
 		exit(1);

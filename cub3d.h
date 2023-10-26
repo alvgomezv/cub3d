@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:47:24 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 18:35:25 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:15:41 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ typedef struct s_map
 	int				**cells;
 	int				max_cols;
 	int				max_rows;
+	int				new_max_cols;
+	int				new_max_rows;
 	char			*no_texture;
 	char			*so_texture;
 	char			*we_texture;
@@ -174,7 +176,7 @@ t_map	*initialize_map_data(void);
 void	initialize_player(t_map *map, char direction, int i, int y);
 void	check_all_map_data(t_map *map);
 void	ft_free_map(t_map *map);
-void	ft_free_cells(t_map *map);
+void	ft_free_cells(t_map *map, int rows);
 
 // Parse and fill cub data
 void	cub_parsing(char *map_route, t_map *map);

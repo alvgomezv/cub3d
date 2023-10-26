@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_textures_and_colors.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:31 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 16:43:11 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:18:04 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

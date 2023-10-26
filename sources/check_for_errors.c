@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_for_errors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:42:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/25 17:57:00 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:21:25 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ void	ft_error_and_free_map(t_map *map, char *error, char *line)
 
 void	ft_error_and_free_all(t_map *map, char *error)
 {
-	ft_free_cells(map);
+	ft_free_cells(map, map->max_rows);
 	ft_free_map(map);
 	ft_printf_fd("Error\n%s\n", 2, error);
 	exit (1);
 }
 
 char	*initial_checks(int argc, char *argv, t_map *map)
-{	
+{
 	if (argc != 2 || argv[ft_strlen(argv) - 1] != 'b'
 		|| argv[ft_strlen(argv) - 2] != 'u'
 		|| argv[ft_strlen(argv) - 3] != 'c'

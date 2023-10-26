@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/23 12:31:47 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:25:07 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	horizontal_lines_depth_check(t_map *map, int depth)
 			map->ray->h_dist = distance_between_points(map->player->x,
 					map->player->y, map->ray->h_x, map->ray->h_y);
 			break ;
-		}	
+		}
 		else
 		{
 			map->ray->x += map->ray->x_offset;
