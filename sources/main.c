@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:04 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/26 19:01:20 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:06:59 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,30 @@ int	load_textures(t_map *map)
 	if (!map->texture)
 		return (1);
 	map->n_tex = mlx_texture_to_image(map->mlx, map->texture);
-	// free(map->texture);
 	if (!map->n_tex)
 		return (1);
+	free(map->texture);
 	map->texture = mlx_load_png(map->so_texture);
 	if (!map->texture)
 		return (1);
-	map->s_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->so_texture));
-	// free(map->texture);
+	map->s_tex = mlx_texture_to_image(map->mlx, map->texture);
 	if (!map->s_tex)
 		return (1);
+	free(map->texture);
 	map->texture = mlx_load_png(map->ea_texture);
 	if (!map->texture)
 		return (1);
-	map->e_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->ea_texture));
-	// free(map->texture);
+	map->e_tex = mlx_texture_to_image(map->mlx, map->texture);
 	if (!map->e_tex)
 		return (1);
+	free(map->texture);
 	map->texture = mlx_load_png(map->we_texture);
 	if (!map->texture)
 		return (1);
-	map->w_tex = mlx_texture_to_image(map->mlx, mlx_load_png(map->we_texture));
-	// free(map->texture);
+	map->w_tex = mlx_texture_to_image(map->mlx, map->texture);
 	if (!map->w_tex)
 		return (1);
+	free(map->texture);
 	return (0);
 }
 
@@ -108,10 +108,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(map->mlx, cont_hook, map);
 	mlx_loop(map->mlx);
 	ft_free_cells(map, map->max_rows);
-	// free(map->cam);
-	//free(map->minmap);
-	//free(map->player_img);
-	free(map->texture);
 	ft_free_map(map);
 	mlx_terminate(map->mlx);
 	return (0);
