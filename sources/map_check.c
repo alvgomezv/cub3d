@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:07 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 16:52:08 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:50:07 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	is_in_border(t_map *map, int row, int col)
 {
-	if (row == 0 || col == 0 || row == map->max_rows - 1 || col == map->max_cols - 1)
+	if (row == 0 || col == 0
+		|| row == map->max_rows - 1 || col == map->max_cols - 1)
 		return (1);
 	return (0);
 }

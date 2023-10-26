@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:44:37 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/18 18:10:14 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:00:33 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	choose_square_to_draw(t_map *map, t_pxl *tl_corner, int irow, int icol)
 	else
 		color = int_to_color(0);
 	draw_square(map->minmap, tl_corner, SQ_SIZE, color);
+	free(color);
 	free(tl_corner->color);
 }
 

@@ -1,6 +1,7 @@
 
 CC=gcc
 NAME=cub3d
+PARAMS=map/good/subject_map.cub
 
 GLFW_PATH="/Users/$(USER)/.brew/opt/glfw/lib/"
 CFLAGS=-Wextra -Wall -Werror -Wunreachable-code -Ofast
@@ -70,5 +71,8 @@ softclean:
 	@rm -f ${OBJ}
 
 build: softclean all
+
+valgrind:
+	valgrind --leak-check=full -s ./$(NAME) $(PARAMS)
 
 .PHONY: all clean fclean re lib main

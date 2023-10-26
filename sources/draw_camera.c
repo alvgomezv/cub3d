@@ -6,7 +6,7 @@
 /*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:43:02 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/19 18:13:21 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:39:18 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	draw_wall_rect(t_map *map, t_ray *ray)
 		rect.x = 0;
 		rect.y += 1;
 	}
+	free(rect.color);
 }
 
 void	draw_camera(t_map *map)
