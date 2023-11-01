@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:04 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/26 19:06:59 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/11/01 20:03:15 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,28 @@ int	load_textures(t_map *map)
 	map->n_tex = mlx_texture_to_image(map->mlx, map->texture);
 	if (!map->n_tex)
 		return (1);
-	free(map->texture);
+	mlx_delete_texture(map->texture);
 	map->texture = mlx_load_png(map->so_texture);
 	if (!map->texture)
 		return (1);
 	map->s_tex = mlx_texture_to_image(map->mlx, map->texture);
 	if (!map->s_tex)
 		return (1);
-	free(map->texture);
+	mlx_delete_texture(map->texture);
 	map->texture = mlx_load_png(map->ea_texture);
 	if (!map->texture)
 		return (1);
 	map->e_tex = mlx_texture_to_image(map->mlx, map->texture);
 	if (!map->e_tex)
 		return (1);
-	free(map->texture);
+	mlx_delete_texture(map->texture);
 	map->texture = mlx_load_png(map->we_texture);
 	if (!map->texture)
 		return (1);
 	map->w_tex = mlx_texture_to_image(map->mlx, map->texture);
 	if (!map->w_tex)
 		return (1);
-	free(map->texture);
+	mlx_delete_texture(map->texture);
 	return (0);
 }
 
