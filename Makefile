@@ -32,7 +32,7 @@ LIBFT_DIR=libft
 LIBFT=$(LIBFT_DIR)/libft.a
 
 
-all: libmlx $(NAME)
+all: submodule libmlx $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@$(CC) $(CFLAGS) $(LIBS) $(HEADERS) $(OBJ) $(LIBFT) -o $(NAME)
@@ -45,8 +45,10 @@ build_test: libmlx $(LIBFT) $(OBJ) $(TEST_MAIN)
 	@$(CC) $(OBJ) $(LIBS) $(HEADERS) $(TEST_MAIN) $(LIBFT) -o test
 
 $(LIBFT):
-	git submodule update --init --recursive
 	@$(MAKE) -C libft
+
+submodule:
+	git submodule update --init --recursive
 
 libmlx:
 	@$(MAKE) -C $(LIBMLX)
