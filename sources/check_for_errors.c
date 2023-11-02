@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:42:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/26 18:21:25 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:17:10 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ void	check_cells_for_errors(char *line, t_map *map)
 		if (line[i] != ' ' && line[i] != '1' && line[i] != '0'
 			&& line[i] != 'N' && line[i] != 'S' && line[i] != 'W'
 			&& line[i] != 'E' && line[i] != '\t')
-			ft_error_and_free_map(map, "Error\nInvalid map data 55", line);
+			ft_error_and_free_map(map, "Invalid map data", line);
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W'
 			|| line[i] == 'E')
 			map->check++;
 		if (map->empty_line > 0 && line[i] != ' ')
-			ft_error_and_free_map(map, "Error\nInvalid map data 30", line);
+			ft_error_and_free_map(map, "Invalid map data", line);
 		i++;
 	}
 	if (map->check > 1)
-		ft_error_and_free_map(map, "Error\nInvalid map data 55", line);
+		ft_error_and_free_map(map, "Invalid map data", line);
 }
 
 void	ft_error_and_free_map(t_map *map, char *error, char *line)
 {
 	free(line);
 	ft_free_map(map);
-	ft_printf_fd("Error\n%s\n", 2, error);
+	ft_printf_fd("Error: %s\n", 2, error);
 	exit (1);
 }
 
@@ -51,7 +51,7 @@ void	ft_error_and_free_all(t_map *map, char *error)
 {
 	ft_free_cells(map, map->max_rows);
 	ft_free_map(map);
-	ft_printf_fd("Error\n%s\n", 2, error);
+	ft_printf_fd("Error: %s\n", 2, error);
 	exit (1);
 }
 
@@ -63,7 +63,7 @@ char	*initial_checks(int argc, char *argv, t_map *map)
 		|| argv[ft_strlen(argv) - 4] != '.')
 	{
 		ft_free_map(map);
-		ft_printf_fd("Error\nMust include a map (.cub file)\n", 2);
+		ft_printf_fd("Error: Must include a map (.cub file)\n", 2);
 		exit (1);
 	}
 	return (argv);

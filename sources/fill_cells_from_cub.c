@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:23 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/26 18:21:45 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:18:09 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	fill_cells_in_map(char *line, int *cells, t_map *map, int y)
 		else
 		{
 			ft_free_cells(map, map->max_rows);
-			ft_error_and_free_map(map, "Error\nInvalid map data 55", line);
+			ft_error_and_free_map(map, "Invalid map data", line);
 		}
 		i++;
 	}

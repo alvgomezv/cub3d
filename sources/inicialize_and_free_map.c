@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inicialize_and_free_map.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:55 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/11/01 19:51:58 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:19:42 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_map	*initialize_map_data(void)
 	map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (!map)
 	{
-		ft_printf_fd("Error\nFailed memory allocation\n", 2);
+		ft_printf_fd("Error: Failed memory allocation\n", 2);
 		exit (1);
 	}
 	map->player = (t_player *)ft_calloc(1, sizeof(t_player));
@@ -79,14 +79,14 @@ void	check_all_map_data(t_map *map)
 	{
 		ft_free_cells(map, map->max_rows);
 		ft_free_map(map);
-		ft_printf_fd("Error\nMissing map data\n", 2);
+		ft_printf_fd("Error: Missing map data\n", 2);
 		exit(1);
 	}
 	if (!is_map_closed(map))
 	{
 		ft_free_cells(map, map->max_rows);
 		ft_free_map(map);
-		ft_printf_fd("Error\nMap not closed or surrounded by walls\n", 2);
+		ft_printf_fd("Error: Map not closed or surrounded by walls\n", 2);
 		exit(1);
 	}
 }

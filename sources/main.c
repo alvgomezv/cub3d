@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:04 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/11/01 20:03:15 by fgomez-d         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:50:59 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,8 @@ void	print_map_cells(t_map *map)
 	}
 }
 
-int	load_textures(t_map *map)
+int	aux_load_textures(t_map *map)
 {
-	map->texture = mlx_load_png(map->no_texture);
-	if (!map->texture)
-		return (1);
-	map->n_tex = mlx_texture_to_image(map->mlx, map->texture);
-	if (!map->n_tex)
-		return (1);
-	mlx_delete_texture(map->texture);
-	map->texture = mlx_load_png(map->so_texture);
-	if (!map->texture)
-		return (1);
-	map->s_tex = mlx_texture_to_image(map->mlx, map->texture);
-	if (!map->s_tex)
-		return (1);
-	mlx_delete_texture(map->texture);
 	map->texture = mlx_load_png(map->ea_texture);
 	if (!map->texture)
 		return (1);
@@ -64,23 +50,44 @@ int	load_textures(t_map *map)
 	return (0);
 }
 
+int	load_textures(t_map *map)
+{
+	map->texture = mlx_load_png(map->no_texture);
+	if (!map->texture)
+		return (1);
+	map->n_tex = mlx_texture_to_image(map->mlx, map->texture);
+	if (!map->n_tex)
+		return (1);
+	mlx_delete_texture(map->texture);
+	map->texture = mlx_load_png(map->so_texture);
+	if (!map->texture)
+		return (1);
+	map->s_tex = mlx_texture_to_image(map->mlx, map->texture);
+	if (!map->s_tex)
+		return (1);
+	mlx_delete_texture(map->texture);
+	if (aux_load_textures(map))
+		return (1);
+	return (0);
+}
+
 void	load_mlxs(t_map	*map)
 {
 	map->mlx = mlx_init(VP_W, VP_H, "Cub3d", 1);
 	if (!map->mlx)
-		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
+		ft_error_and_free_all(map, "Mlx failed to initialize");
 	map->cam = mlx_new_image(map->mlx, VP_W, VP_H);
 	if (!map->cam)
-		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
+		ft_error_and_free_all(map, "Mlx failed to initialize");
 	if (load_textures(map))
-		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
+		ft_error_and_free_all(map, "Mlx failed to initialize");
 	map->minmap = mlx_new_image(map->mlx, map->max_cols
 			* SQ_SIZE * MM_SCALE, map->max_rows * SQ_SIZE * MM_SCALE);
 	if (!map->minmap)
-		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
+		ft_error_and_free_all(map, "Mlx failed to initialize");
 	map->player_img = mlx_new_image(map->mlx, P_W, P_H);
 	if (!map->player_img)
-		ft_error_and_free_all(map, "Error\nMlx failed to initialize");
+		ft_error_and_free_all(map, "Mlx failed to initialize");
 	mlx_image_to_window(map->mlx, map->minmap, MM_RADIUS
 		- (map->player->x * MM_SCALE), MM_RADIUS - (map->player->y * MM_SCALE));
 	mlx_image_to_window(map->mlx, map->player_img,
@@ -88,16 +95,10 @@ void	load_mlxs(t_map	*map)
 	mlx_image_to_window(map->mlx, map->cam, VP_TL_X, VP_TL_Y);
 }
 
-void leaks(void)
-{
-	system("leaks -q cub3d");
-}
-
 int	main(int argc, char **argv)
 {
 	t_map	*map;
 
-	atexit(leaks);
 	map = initialize_map_data();
 	cub_parsing(initial_checks(argc, argv[1], map), map);
 	load_mlxs(map);

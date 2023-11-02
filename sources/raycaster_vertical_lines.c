@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:46:16 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/23 12:31:37 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:51:21 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	vertical_lines_depth_check(t_map *map, int depth)
 			map->ray->v_dist = distance_between_points(map->player->x,
 					map->player->y, map->ray->v_x, map->ray->v_y);
 			break ;
-		}	
+		}
 		else
 		{
 			map->ray->x += map->ray->x_offset;
