@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inicialize_and_free_map.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgomez-d <fgomez-d@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:45:55 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/10/26 19:01:08 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:51:58 by fgomez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_free_cells(t_map *map, int rows)
 	i = 0;
 	while (i < rows)
 	{
-		//if (map->cells[i])
 		free(map->cells[i]);
 		i++;
 	}
