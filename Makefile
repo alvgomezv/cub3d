@@ -1,6 +1,6 @@
 
 CC=gcc
-NAME=cub3d
+NAME=cub3D
 PARAMS=map/good/subject_map.cub
 
 GLFW_PATH="/Users/$(USER)/.brew/opt/glfw/lib/"
@@ -48,7 +48,7 @@ $(LIBFT):
 	@$(MAKE) -C libft
 
 submodule:
-	git submodule update --init --recursive
+	@git submodule update --init --recursive
 
 libmlx:
 	@$(MAKE) -C $(LIBMLX)
